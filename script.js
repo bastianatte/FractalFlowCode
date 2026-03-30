@@ -6,9 +6,70 @@
   const sections = navLinks
     .map((link) => document.getElementById(link.dataset.section))
     .filter(Boolean);
+  const salesCharts = Array.from(document.querySelectorAll("[data-sales-chart]"));
   const languageTargets = Array.from(document.querySelectorAll("[data-aria-label-it][data-aria-label-en]"));
   const skipLink = document.querySelector(".skip-link");
   const storageKey = "ffeo-language";
+
+  function renderSalesChart(chart) {
+    const bars = Array.from(chart.querySelectorAll("[data-value]"));
+    if (!bars.length) {
+      return;
+    }
+
+    const values = bars.map((bar) => Number(bar.dataset.value) || 0);
+    const maxValue = Math.max(...values, 160);
+
+    bars.forEach((bar) => {
+      const value = Number(bar.dataset.value) || 0;
+      const height = Math.max((value / maxValue) * 100, 10);
+      bar.style.setProperty("--bar-height", `${height}%`);
+    });
+
+    const points = values.map((value, index) => {
+      const x = values.length === 1 ? 50 : 6 + (index * (88 / (values.length - 1)));
+      const y = 90 - ((value / maxValue) * 68);
+      return { x, y };
+    });
+
+    const linePath = points
+      .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+      .join(" ");
+
+    const areaPath = `${linePath} L 94 94 L 6 94 Z`;
+    const svgArea = chart.querySelector(".sales-chart-area");
+
+    if (svgArea) {
+      svgArea.setAttribute("d", areaPath);
+    }
+  }
+
+  function initSalesCharts() {
+    if (!salesCharts.length) {
+      return;
+    }
+
+    salesCharts.forEach((chart) => renderSalesChart(chart));
+
+    if ("IntersectionObserver" in window) {
+      const chartObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        {
+          threshold: 0.35,
+        }
+      );
+
+      salesCharts.forEach((chart) => chartObserver.observe(chart));
+    } else {
+      salesCharts.forEach((chart) => chart.classList.add("is-visible"));
+    }
+  }
 
   function setLanguage(lang) {
     const nextLang = lang === "en" ? "en" : "it";
@@ -70,6 +131,7 @@
   })();
 
   setLanguage(savedLang || root.dataset.lang || "it");
+  initSalesCharts();
   if (sections.length) {
     const hashTarget = location.hash ? location.hash.replace("#", "") : "";
     const initialSection = sections.find((section) => section.id === hashTarget) || sections[0];

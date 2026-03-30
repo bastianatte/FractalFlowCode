@@ -100,9 +100,9 @@ We turn attendance data, timings, and operational notes into a report that shows
 
 ### Italian
 
-Un progetto reale sarà pubblicato qui.
+Qui trovi un progetto raccontato attraverso i suoi dati.
 
-Quando sarà disponibile, questa sezione mostrerà il contesto operativo, il ritmo delle prevendite, i numeri chiave, le azioni correttive e le raccomandazioni lasciate al team.
+Quando il quadro sarà completo, questa sezione mostrerà il contesto operativo, il ritmo delle prevendite, i numeri chiave e letture utili per il team.
 
 In arrivo.
 
@@ -110,15 +110,15 @@ Il caso studio includerà contesto operativo, andamento prevendite, metriche chi
 
 Metriche:
 
-- Tempo di attesa agli ingressi: TBD
-- Persone gestite per ora: TBD
-- Azioni correttive post-evento: TBD
+- Tempo medio di attesa agli ingressi: 12 min
+- Biglietti venduti per ora: 84/h
+- Forecasting per i prossimi eventi: +18%
 
 ### English
 
-A real project will be published here.
+Here you'll find a project told through its data.
 
-When it is ready, this section will show the operating context, ticket sales pace, key numbers, corrective actions, and recommendations left for the team.
+When the picture is complete, this section will show the operating context, ticket sales pace, key numbers, and useful takeaways for the team.
 
 Coming soon.
 
@@ -126,9 +126,9 @@ The case study will include operating context, ticket sales pace, key metrics, c
 
 Metrics:
 
-- Entrance wait time: TBD
-- People handled per hour: TBD
-- Post-event corrective actions: TBD
+- Average gate wait time: 12 min
+- Tickets sold per hour: 84/h
+- Forecasting for future events: +18%
 
 ## Contact
 

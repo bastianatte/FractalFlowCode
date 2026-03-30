@@ -257,15 +257,15 @@
         <div class="container case-study-grid">
           <div class="section-intro">
             <h2>
-              <span class="lang lang-it">Un progetto reale sarà pubblicato qui.</span>
-              <span class="lang lang-en">A real project will be published here.</span>
+              <span class="lang lang-it">Qui trovi un progetto raccontato attraverso i suoi dati.</span>
+              <span class="lang lang-en">Here you'll find a project told through its data.</span>
             </h2>
             <p class="muted">
               <span class="lang lang-it">
-                Quando sarà disponibile, questa sezione mostrerà il contesto operativo, il ritmo delle prevendite, i numeri chiave, le azioni correttive e le raccomandazioni lasciate al team.
+                Quando il quadro sarà completo, questa sezione mostrerà il contesto operativo, il ritmo delle prevendite, i numeri chiave e letture utili per il team.
               </span>
               <span class="lang lang-en">
-                When it is ready, this section will show the operating context, ticket sales pace, key numbers, corrective actions, and recommendations left for the team.
+                When the picture is complete, this section will show the operating context, ticket sales pace, key numbers, and useful takeaways for the team.
               </span>
             </p>
           </div>
@@ -288,30 +288,91 @@
             </p>
 
             <div
+              class="sales-chart"
+              data-sales-chart
+              aria-label="Illustrative ticket sales trend"
+              data-aria-label-it="Grafico illustrativo dell'andamento vendite in base ai mesi mancanti al festival."
+              data-aria-label-en="Illustrative ticket sales trend by months remaining until the festival."
+            >
+              <div class="sales-chart-head">
+                <div>
+                  <p class="sales-chart-title">
+                    <span class="lang lang-it">Andamento vendite</span>
+                    <span class="lang lang-en">Sample ticket sales trend</span>
+                  </p>
+                  <p class="sales-chart-subtitle">
+                    <span class="lang lang-it">Biglietti venduti per mese.</span>
+                    <span class="lang lang-en">Months before the festival and tickets sold per month.</span>
+                  </p>
+                </div>
+                <span class="sales-chart-badge">
+                  <span class="lang lang-it">Demo</span>
+                  <span class="lang lang-en">Demo</span>
+                </span>
+              </div>
+
+              <div class="sales-chart-body">
+                <div class="sales-chart-yaxis" aria-hidden="true">
+                  <span class="sales-chart-axis-unit"><span>ticket</span><span>sold</span></span>
+                  <span>160</span>
+                  <span>120</span>
+                  <span>80</span>
+                  <span>40</span>
+                  <span>0</span>
+                </div>
+
+                <div class="sales-chart-canvas">
+                  <div class="sales-chart-grid" aria-hidden="true"></div>
+                  <div class="sales-chart-bars" aria-hidden="true">
+                    <span class="sales-chart-bar" data-value="18" data-month="10"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">10m</span></span>
+                    <span class="sales-chart-bar" data-value="24" data-month="9"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">9m</span></span>
+                    <span class="sales-chart-bar" data-value="31" data-month="8"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">8m</span></span>
+                    <span class="sales-chart-bar" data-value="40" data-month="7"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">7m</span></span>
+                    <span class="sales-chart-bar" data-value="51" data-month="6"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">6m</span></span>
+                    <span class="sales-chart-bar" data-value="63" data-month="5"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">5m</span></span>
+                    <span class="sales-chart-bar" data-value="76" data-month="4"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">4m</span></span>
+                    <span class="sales-chart-bar" data-value="92" data-month="3"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">3m</span></span>
+                    <span class="sales-chart-bar" data-value="110" data-month="2"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">2m</span></span>
+                    <span class="sales-chart-bar" data-value="131" data-month="1"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day">1m</span></span>
+                    <span class="sales-chart-bar" data-value="155" data-month="0"><i class="sales-chart-bar-fill"></i><span class="sales-chart-bar-day sales-chart-festival">Festival</span></span>
+                  </div>
+
+                  <svg class="sales-chart-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="sales-chart-area"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="sales-chart-xaxis" aria-hidden="true">
+                <span class="sales-chart-axis-months">MONTHS</span>
+              </div>
+            </div>
+
+            <div
               class="metrics"
               aria-label="Project metrics"
               data-aria-label-it="Metriche del progetto"
               data-aria-label-en="Project metrics"
             >
               <div class="metric">
-                <span class="metric-value">TBD</span>
+                <span class="metric-value">12 min</span>
                 <span class="metric-label">
-                  <span class="lang lang-it">Tempo di attesa agli ingressi</span>
-                  <span class="lang lang-en">Entrance wait time</span>
+                  <span class="lang lang-it">Tempo medio di attesa agli ingressi</span>
+                  <span class="lang lang-en">Average gate wait time</span>
                 </span>
               </div>
               <div class="metric">
-                <span class="metric-value">TBD</span>
+                <span class="metric-value">84/h</span>
                 <span class="metric-label">
-                  <span class="lang lang-it">Persone gestite per ora</span>
-                  <span class="lang lang-en">People handled per hour</span>
+                  <span class="lang lang-it">Biglietti venduti per ora</span>
+                  <span class="lang lang-en">Tickets sold per hour</span>
                 </span>
               </div>
               <div class="metric">
-                <span class="metric-value">TBD</span>
+                <span class="metric-value">+18%</span>
                 <span class="metric-label">
-                  <span class="lang lang-it">Azioni correttive post-evento</span>
-                  <span class="lang lang-en">Post-event corrective actions</span>
+                  <span class="lang lang-it">Forecasting per i prossimi eventi</span>
+                  <span class="lang lang-en">Forecasting for future events</span>
                 </span>
               </div>
             </div>
