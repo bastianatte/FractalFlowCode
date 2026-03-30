@@ -524,6 +524,10 @@ h1 .title-line {
   text-align: center;
 }
 
+#services .section-intro.compact h2 .title-line {
+  display: block;
+}
+
 .supporting-copy,
 .muted {
   color: var(--muted);
@@ -544,16 +548,16 @@ h1 .title-line {
   margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .service-card {
   border-radius: var(--radius);
-  padding: 1.35rem;
-  min-height: 230px;
+  padding: 1.6rem;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1rem;
   position: relative;
   overflow: hidden;
   background:
@@ -601,34 +605,34 @@ h1 .title-line {
 }
 
 .service-card:nth-child(1) {
-  border-top: 2px solid rgba(255, 103, 199, 0.42);
+  border-top: 2px solid rgba(255, 103, 199, 0.5);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.014)),
-    linear-gradient(135deg, rgba(255, 103, 199, 0.18), rgba(255, 179, 71, 0.08) 50%, rgba(191, 255, 74, 0.05)),
+    linear-gradient(135deg, rgba(255, 103, 199, 0.28), rgba(159, 118, 255, 0.1) 54%, rgba(255, 255, 255, 0.02)),
     var(--surface);
 }
 
 .service-card:nth-child(2) {
-  border-top: 2px solid rgba(255, 179, 71, 0.42);
+  border-top: 2px solid rgba(132, 236, 255, 0.5);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.014)),
-    linear-gradient(135deg, rgba(255, 179, 71, 0.18), rgba(255, 103, 199, 0.08) 50%, rgba(191, 255, 74, 0.05)),
+    linear-gradient(135deg, rgba(132, 236, 255, 0.24), rgba(96, 141, 255, 0.12) 54%, rgba(255, 255, 255, 0.02)),
     var(--surface);
 }
 
 .service-card:nth-child(3) {
-  border-top: 2px solid rgba(191, 255, 74, 0.34);
+  border-top: 2px solid rgba(191, 255, 74, 0.5);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.014)),
-    linear-gradient(135deg, rgba(191, 255, 74, 0.16), rgba(255, 103, 199, 0.06) 50%, rgba(255, 179, 71, 0.04)),
+    linear-gradient(135deg, rgba(191, 255, 74, 0.2), rgba(132, 236, 255, 0.08) 54%, rgba(255, 255, 255, 0.02)),
     var(--surface);
 }
 
 .service-card:nth-child(4) {
-  border-top: 2px solid rgba(255, 103, 199, 0.34);
+  border-top: 2px solid rgba(255, 179, 71, 0.5);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.014)),
-    linear-gradient(135deg, rgba(255, 103, 199, 0.16), rgba(255, 179, 71, 0.08) 50%, rgba(191, 255, 74, 0.05)),
+    linear-gradient(135deg, rgba(255, 179, 71, 0.22), rgba(255, 103, 199, 0.1) 54%, rgba(255, 255, 255, 0.02)),
     var(--surface);
 }
 
@@ -636,17 +640,18 @@ h1 .title-line {
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
 }
 
 .service-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.26rem;
   line-height: 1.25;
 }
 
 .service-copy {
   color: var(--muted);
   margin-top: auto;
+  font-size: 1.03rem;
 }
 
 .case-panel,
@@ -779,6 +784,7 @@ html[data-lang="en"] .lang-en {
 @media (max-width: 1120px) {
   .services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 }
 
@@ -865,6 +871,12 @@ html[data-lang="en"] .lang-en {
 
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 0.95rem;
+  }
+
+  .service-card {
+    min-height: 220px;
+    padding: 1.35rem;
   }
 
   .header-inner {
