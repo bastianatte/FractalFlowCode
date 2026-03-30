@@ -504,6 +504,7 @@ h1 .title-line {
   line-height: 1.08;
   letter-spacing: -0.045em;
   max-width: 18ch;
+  color: var(--text);
 }
 
 .section#what-we-do .section-intro.editorial h2 {
@@ -646,6 +647,23 @@ h1 .title-line {
 .service-card h3 {
   font-size: 1.26rem;
   line-height: 1.25;
+  color: #f7fbff;
+}
+
+.service-card:nth-child(1) h3 {
+  color: #ff7ed7;
+}
+
+.service-card:nth-child(2) h3 {
+  color: #88eeff;
+}
+
+.service-card:nth-child(3) h3 {
+  color: #d8ff6f;
+}
+
+.service-card:nth-child(4) h3 {
+  color: #ffd37a;
 }
 
 .service-copy {
@@ -667,9 +685,45 @@ h1 .title-line {
     var(--surface);
 }
 
+#case-study .section-intro h2 {
+  color: var(--text);
+}
+
+#case-study .case-study-grid {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+#case-study .section-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 86ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#case-study .section-intro h2 {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#case-study .muted {
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1.1rem;
+}
+
+#case-study .case-panel {
+  width: min(100%, 86ch);
+}
+
 .case-status {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
@@ -726,6 +780,10 @@ h1 .title-line {
     linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.01)),
     linear-gradient(135deg, rgba(159, 118, 255, 0.04), rgba(132, 236, 255, 0.025), rgba(255, 103, 199, 0.025)),
     var(--surface);
+}
+
+#contact .section-intro.compact h2 {
+  color: var(--text);
 }
 
 .contact-list {
