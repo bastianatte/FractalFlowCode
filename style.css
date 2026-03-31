@@ -74,6 +74,73 @@ body::after {
     linear-gradient(180deg, rgba(12, 15, 19, 0.36), rgba(12, 15, 19, 0.74));
 }
 
+.page-reveal {
+  position: fixed;
+  inset: -10vh -10vw;
+  z-index: 40;
+  pointer-events: none;
+  background: #040406;
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity 120ms linear;
+}
+
+.page-reveal::before,
+.page-reveal::after {
+  display: none;
+}
+
+.page-reveal-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.page-reveal-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  color: transparent;
+  background: linear-gradient(90deg, #56d5ff 0%, #7cff6b 24%, #fff176 48%, #ff78d0 72%, #9f76ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: clamp(1.45rem, 3.3vw, 5.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+  line-height: 0.96;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(0.45rem) scale(0.98);
+  transition: opacity 240ms ease, filter 240ms ease;
+  filter: drop-shadow(0 0 18px rgba(255, 103, 199, 0.18)) drop-shadow(0 0 24px rgba(132, 236, 255, 0.12));
+  mix-blend-mode: screen;
+  will-change: opacity, transform, filter;
+  pointer-events: none;
+}
+
+.page-reveal-title.is-visible {
+  opacity: 1;
+}
+
+.page-reveal-word {
+  display: inline-block;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: transform, opacity;
+}
+
+.page-reveal-space {
+  display: inline-block;
+  width: 0.32em;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -1259,5 +1326,15 @@ html[data-lang="en"] .lang-en {
     opacity: 0.2;
     -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0 32%, rgba(0, 0, 0, 0.98) 48%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0) 84%);
     mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0 32%, rgba(0, 0, 0, 0.98) 48%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0) 84%);
+  }
+
+  .page-reveal {
+    inset: -8vh -8vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-reveal {
+    display: none;
   }
 }
