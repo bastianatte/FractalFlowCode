@@ -59,7 +59,7 @@ body::before {
     radial-gradient(circle at center, rgba(255, 103, 199, 0.16), transparent 34%),
     radial-gradient(circle at center, rgba(132, 236, 255, 0.12), transparent 48%),
     radial-gradient(circle at center, rgba(191, 255, 74, 0.06), transparent 64%),
-    url("images/Fibonacci_round.png") center center / min(58vw, 680px) no-repeat;
+    url("images/Fibonacci1.png") center center / min(58vw, 680px) no-repeat;
   opacity: 0.36;
   mix-blend-mode: screen;
   filter: saturate(1.08) contrast(1.02);
@@ -778,7 +778,7 @@ h1 .title-line {
   color: transparent;
   text-transform: uppercase;
   letter-spacing: 0.11em;
-  font-size: 1.04rem;
+  font-size: 1.18rem;
   font-weight: 800;
   text-align: center;
 }
@@ -1171,12 +1171,12 @@ html[data-lang="en"] .lang-en {
   }
 
   body::before {
-    background:
-      radial-gradient(ellipse at center, rgba(12, 8, 24, 0) 30%, rgba(12, 8, 24, 0.16) 60%, rgba(12, 8, 24, 0.68) 84%, rgba(12, 8, 24, 0.96) 100%),
-      radial-gradient(circle at center, rgba(255, 103, 199, 0.14), transparent 34%),
-      radial-gradient(circle at center, rgba(132, 236, 255, 0.1), transparent 48%),
-      radial-gradient(circle at center, rgba(191, 255, 74, 0.05), transparent 64%),
-      url("images/Fibonacci_round.png") center center / min(64vw, 540px) no-repeat;
+  background:
+    radial-gradient(ellipse at center, rgba(12, 8, 24, 0) 30%, rgba(12, 8, 24, 0.16) 60%, rgba(12, 8, 24, 0.68) 84%, rgba(12, 8, 24, 0.96) 100%),
+    radial-gradient(circle at center, rgba(255, 103, 199, 0.14), transparent 34%),
+    radial-gradient(circle at center, rgba(132, 236, 255, 0.1), transparent 48%),
+    radial-gradient(circle at center, rgba(191, 255, 74, 0.05), transparent 64%),
+    url("images/Fibonacci1.png") center center / min(64vw, 540px) no-repeat;
     opacity: 0.26;
     -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0 30%, rgba(0, 0, 0, 0.98) 46%, rgba(0, 0, 0, 0.74) 60%, rgba(0, 0, 0, 0) 82%);
     mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0 30%, rgba(0, 0, 0, 0.98) 46%, rgba(0, 0, 0, 0.74) 60%, rgba(0, 0, 0, 0) 82%);
@@ -1217,7 +1217,7 @@ html[data-lang="en"] .lang-en {
   }
 
   .sales-chart-title {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
   }
 
   .sales-chart-subtitle {
@@ -1255,7 +1255,7 @@ html[data-lang="en"] .lang-en {
       radial-gradient(circle at center, rgba(255, 103, 199, 0.12), transparent 34%),
       radial-gradient(circle at center, rgba(132, 236, 255, 0.08), transparent 48%),
       radial-gradient(circle at center, rgba(191, 255, 74, 0.04), transparent 64%),
-      url("images/Fibonacci_round.png") center center / min(72vw, 420px) no-repeat;
+      url("images/Fibonacci1.png") center center / min(72vw, 420px) no-repeat;
     opacity: 0.2;
     -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0 32%, rgba(0, 0, 0, 0.98) 48%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0) 84%);
     mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0 32%, rgba(0, 0, 0, 0.98) 48%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0) 84%);
