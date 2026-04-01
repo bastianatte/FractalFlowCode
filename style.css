@@ -250,6 +250,7 @@ footer {
 .brand-text-link {
   justify-self: start;
   grid-area: brand;
+  margin-left: clamp(1.5rem, 4vw, 10rem);
   color: var(--text);
 }
 
@@ -1227,6 +1228,7 @@ html[data-lang="en"] .lang-en {
 
   .brand-text-link {
     align-self: center;
+    margin-left: 0;
   }
 
   .brand-logo-link {
@@ -1381,6 +1383,7 @@ html[data-lang="en"] .lang-en {
   .brand-text-link {
     max-width: 100%;
     justify-self: start;
+    margin-left: 0;
   }
 
   .brand-text {
