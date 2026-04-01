@@ -93,7 +93,12 @@
     title.setAttribute("data-wave-text", titleText);
     title.innerHTML = titleText
       .split(" ")
-      .map((word) => `<span class="page-reveal-word">${word}</span>`)
+      .map((word) => {
+        const letters = [...word]
+          .map((letter) => `<span class="page-reveal-letter">${letter}</span>`)
+          .join("");
+        return `<span class="page-reveal-word">${letters}</span>`;
+      })
       .join('<span class="page-reveal-space">&nbsp;</span>');
     title.setAttribute("aria-hidden", "true");
     pageReveal.appendChild(title);
@@ -117,6 +122,16 @@
 
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
     const rgba = ([r, g, b], a) => `rgba(${r}, ${g}, ${b}, ${a})`;
+    const shade = ([r, g, b], factor) => [
+      Math.max(0, Math.min(255, Math.round(r * factor))),
+      Math.max(0, Math.min(255, Math.round(g * factor))),
+      Math.max(0, Math.min(255, Math.round(b * factor))),
+    ];
+    const lighten = ([r, g, b], factor) => [
+      Math.max(0, Math.min(255, Math.round(r + (255 - r) * factor))),
+      Math.max(0, Math.min(255, Math.round(g + (255 - g) * factor))),
+      Math.max(0, Math.min(255, Math.round(b + (255 - b) * factor))),
+    ];
     let width = 0;
     let height = 0;
     let dpr = 1;
@@ -157,22 +172,41 @@
 
       const outerAlpha = intensity * wave.alpha * 0.18;
       const innerAlpha = intensity * wave.alpha;
+      const shadowColor = shade(wave.color, 0.38);
+      const highlightColor = lighten(wave.color, 0.42);
 
       ctx.save();
       ctx.globalCompositeOperation = "screen";
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
-      ctx.shadowColor = rgba(wave.color, 0.7);
-      ctx.shadowBlur = wave.blur * 1.4;
-      ctx.strokeStyle = rgba(wave.color, outerAlpha);
-      ctx.lineWidth = wave.width * 2.8;
+      ctx.translate(0, wave.width * 0.36);
+      ctx.shadowColor = rgba(shadowColor, outerAlpha * 0.8);
+      ctx.shadowBlur = wave.blur * 1.08;
+      ctx.strokeStyle = rgba(shadowColor, outerAlpha * 0.62);
+      ctx.lineWidth = wave.width * 3.2;
       ctx.stroke();
+      ctx.restore();
 
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
       ctx.shadowBlur = wave.blur * 0.7;
       ctx.strokeStyle = rgba(wave.color, innerAlpha * 0.74);
       ctx.lineWidth = wave.width * 1.45;
       ctx.stroke();
+      ctx.restore();
 
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.translate(0, -wave.width * 0.22);
+      ctx.shadowColor = rgba(highlightColor, innerAlpha * 0.5);
+      ctx.shadowBlur = wave.blur * 0.3;
+      ctx.strokeStyle = rgba(highlightColor, innerAlpha * 0.76);
+      ctx.lineWidth = wave.width * 0.72;
+      ctx.stroke();
       ctx.shadowBlur = wave.blur * 0.25;
       ctx.strokeStyle = rgba(wave.color, innerAlpha);
       ctx.lineWidth = wave.width;
@@ -217,12 +251,19 @@
         const wordProgress = clamp((time - wordStart) / 0.34, 0, 1);
         const wordMotion = clamp((wordStart + 2 - time) / 2, 0, 1);
         const motionTime = Math.max(time - wordStart, 0);
-        const y = Math.sin(motionTime * 7.2 + index * 0.58) * 10 * wordMotion;
-        const x = Math.cos(motionTime * 5.8 + index * 0.34) * 3 * wordMotion;
-        const tilt = Math.sin(motionTime * 4.4 + index * 0.52) * 8 * wordMotion;
-        const scale = 1 + Math.sin(motionTime * 6.1 + index * 0.41) * 0.02 * wordMotion;
         word.style.opacity = String(wordProgress);
-        word.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+        word.style.transform = "none";
+
+        const letters = word.querySelectorAll(".page-reveal-letter");
+        letters.forEach((letter, letterIndex) => {
+          const letterPhase = index * 0.74 + letterIndex * 0.48;
+          const letterY = Math.sin(motionTime * 8.8 + letterPhase) * 13 * wordMotion;
+          const letterX = Math.cos(motionTime * 6.3 + letterPhase * 0.82) * 2.5 * wordMotion;
+          const tilt = Math.sin(motionTime * 5.1 + letterPhase) * 7.5 * wordMotion;
+          const scale = 1 + Math.sin(motionTime * 6.7 + letterPhase) * 0.018 * wordMotion;
+          letter.style.opacity = String(wordProgress);
+          letter.style.transform = `translate3d(${letterX.toFixed(2)}px, ${letterY.toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+        });
       });
       ctx.clearRect(0, 0, width, height);
 
