@@ -19,7 +19,7 @@
     }
 
     const values = bars.map((bar) => Number(bar.dataset.value) || 0);
-    const maxValue = Math.max(...values, 160);
+    const maxValue = Number(chart.dataset.max) || Math.max(...values);
 
     bars.forEach((bar) => {
       const value = Number(bar.dataset.value) || 0;

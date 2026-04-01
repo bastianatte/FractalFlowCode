@@ -54,13 +54,13 @@ Typical use: Pre-event / On site
 
 We align systems, sales flows, and access checks, and read ticket sales pace so staffing, entrances, and on-site support match the real demand.
 
-### 2. Gate & crowd flow management
+### 2. Gestione ingressi e flussi del pubblico
 
 **Italian**
 
 Uso tipico: On site
 
-Leggiamo code, punti di strozzatura e cambi di ritmo ai varchi per tenere il flusso sotto controllo senza creare attriti inutili.
+Leggiamo code, punti di strozzatura e cambi di ritmo agli ingressi per tenere il flusso sotto controllo senza creare attriti inutili.
 
 **English**
 
@@ -68,7 +68,7 @@ Typical use: On site
 
 We read queues, bottlenecks, and pacing at the gates to keep flow under control without adding unnecessary friction.
 
-### 3. Event operations
+### 3. Operazioni evento
 
 **Italian**
 
@@ -82,7 +82,7 @@ Typical use: On site / Control room
 
 We coordinate information and priorities across teams so operational decisions stay simple to make and simple to pass on.
 
-### 4. Post-event analytics
+### 4. Analisi post-evento
 
 **Italian**
 
@@ -100,35 +100,47 @@ We turn attendance data, timings, and operational notes into a report that shows
 
 ### Italian
 
-Qui trovi un progetto raccontato attraverso i suoi dati.
+Qui trovi i progetti raccontati attraverso i loro dati.
 
-Quando il quadro sarà completo, questa sezione mostrerà il contesto operativo, il ritmo delle prevendite, i numeri chiave e letture utili per il team.
+Qui trovi i dati del tuo evento, sempre aggiornati e disponibili.
 
-In arrivo.
+DEMO.
 
-Il caso studio includerà contesto operativo, andamento prevendite, metriche chiave, azioni correttive e raccomandazioni pratiche.
+Qui il progetto prende forma attraverso andamento prevendite, dati operativi e indicazioni utili per il team.
 
 Metriche:
 
-- Tempo medio di attesa agli ingressi: 12 min
-- Biglietti venduti per ora: 84/h
-- Forecasting per i prossimi eventi: +18%
+- Demo 1
+  - Tempo medio di attesa agli ingressi: 12 min
+  - Biglietti venduti per ora: 84/h
+  - Forecasting per i prossimi eventi: +18%
+
+- Demo 2
+  - Affluenza prevista: 4.8k
+  - Persone in ingresso all'ora: 220/h
+  - Capienza residua: 7.5%
 
 ### English
 
-Here you'll find a project told through its data.
+Here you'll find projects told through their data.
 
-When the picture is complete, this section will show the operating context, ticket sales pace, key numbers, and useful takeaways for the team.
+Here you'll find your event data, always updated and ready to use.
 
-Coming soon.
+DEMO.
 
-The case study will include operating context, ticket sales pace, key metrics, corrective actions, and practical recommendations.
+Here the project takes shape through ticket sales pace, operational data, and useful guidance for the team.
 
 Metrics:
 
-- Average gate wait time: 12 min
-- Tickets sold per hour: 84/h
-- Forecasting for future events: +18%
+- Demo 1
+  - Average gate wait time: 12 min
+  - Tickets sold per hour: 84/h
+  - Forecasting for future events: +18%
+
+- Demo 2
+  - Expected attendance: 4.8k
+  - People entering per hour: 220/h
+  - Remaining capacity: 7.5%
 
 ## Contact
 
@@ -136,7 +148,7 @@ Metrics:
 
 Scrivici
 
-Se hai già data, location e volumi stimati, scrivici così possiamo capire subito dove serve supporto operativo.
+Se hai già data, location e volumi stimati, partiamo da lì: ti diciamo subito come possiamo supportarti e dove intervenire.
 
 Email: hello@fractalfloweventops.com
 
@@ -148,7 +160,7 @@ Location: Italy / Europe
 
 Get in touch
 
-If you already have the date, location, and estimated volumes, write to us and we can quickly see where operational support is needed.
+If you already have the date, location, and estimated volumes, we can start from there: we'll quickly tell you how we can support you and where to focus.
 
 Email: hello@fractalfloweventops.com
 
