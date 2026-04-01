@@ -91,15 +91,20 @@
     title.className = "page-reveal-title";
     const titleText = "Fractal Flow Events Ops";
     title.setAttribute("data-wave-text", titleText);
-    title.innerHTML = titleText
-      .split(" ")
-      .map((word) => {
-        const letters = [...word]
-          .map((letter) => `<span class="page-reveal-letter">${letter}</span>`)
-          .join("");
-        return `<span class="page-reveal-word">${letters}</span>`;
-      })
-      .join('<span class="page-reveal-space">&nbsp;</span>');
+    const titleWords = titleText.split(" ");
+    const renderWord = (word) => {
+      const letters = [...word]
+        .map((letter) => `<span class="page-reveal-letter">${letter}</span>`)
+        .join("");
+      return `<span class="page-reveal-word">${letters}</span>`;
+    };
+    title.innerHTML = `
+      <span class="page-reveal-line page-reveal-line-top">
+        ${titleWords.slice(0, 2).map(renderWord).join('<span class="page-reveal-space">&nbsp;</span>')}
+      </span>
+      <span class="page-reveal-line page-reveal-line-bottom">
+        ${titleWords.slice(2).map(renderWord).join('<span class="page-reveal-space">&nbsp;</span>')}
+      </span>`;
     title.setAttribute("aria-hidden", "true");
     pageReveal.appendChild(title);
 
