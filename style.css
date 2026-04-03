@@ -1047,7 +1047,6 @@ h1 .title-line {
   font-size: 0.7rem;
   line-height: 1;
   font-weight: 600;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .sales-chart-canvas {
@@ -1174,7 +1173,6 @@ h1 .title-line {
   letter-spacing: 0.11em;
   font-weight: 700;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
 }
 
 .sales-chart-axis-months {
