@@ -30,13 +30,13 @@ CTA 2: Explore services
 
 Fractal Flow Event Ops aiuta gli organizzatori a trasformare l’operatività sul campo in processi più chiari, misurabili e gestibili.
 
-Mettiamo ordine tra cosa succede ai gate, come stanno andando le prevendite, chi serve supporto e cosa va corretto alla prossima occasione.
+Osserviamo ingressi, prevendite e priorità operative per trasformare i dati sul campo in processi più chiari, misurabili e gestibili.
 
 ### English
 
 Fractal Flow Event Ops helps organizers turn on-the-ground event work into a clearer operating picture.
 
-We bring order to what happens at the gates, how ticket sales are pacing, where support is needed, and what should be corrected next time.
+We observe entrances, ticket sales, and operational priorities to turn field data into clearer, measurable, and manageable processes.
 
 ## Services
 
