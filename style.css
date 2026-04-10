@@ -223,6 +223,15 @@ footer {
   z-index: 20;
   background: rgba(15, 17, 22, 0.92);
   border-bottom: 1px solid var(--border);
+  transition:
+    transform 0.28s ease,
+    opacity 0.22s ease;
+  will-change: transform, opacity;
+}
+
+.site-header.is-hidden {
+  transform: translateY(-115%);
+  opacity: 0;
 }
 
 .site-header .container {

@@ -2,6 +2,7 @@
   const root = document.documentElement;
   const buttons = Array.from(document.querySelectorAll("[data-lang-target]"));
   const nav = document.querySelector(".site-nav");
+  const siteHeader = document.querySelector(".site-header");
   const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
   const sections = navLinks
     .map((link) => document.getElementById(link.dataset.section))
@@ -305,6 +306,36 @@
     window.setTimeout(cleanup, 10000);
   }
 
+  function initHeaderScrollState() {
+    if (!siteHeader) {
+      return;
+    }
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
+      const shouldHide = currentScrollY > 120 && scrollDelta > 0;
+
+      siteHeader.classList.toggle("is-hidden", shouldHide);
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+  }
+
   function setLanguage(lang) {
     const nextLang = lang === "en" ? "en" : "it";
     root.dataset.lang = nextLang;
@@ -367,6 +398,7 @@
   setLanguage(savedLang || root.dataset.lang || "it");
   initPageReveal();
   initSalesCharts();
+  initHeaderScrollState();
   if (sections.length) {
     const hashTarget = location.hash ? location.hash.replace("#", "") : "";
     const initialSection = sections.find((section) => section.id === hashTarget) || sections[0];
