@@ -113,7 +113,7 @@
     if (!ctx) {
       window.setTimeout(() => {
         pageReveal.remove();
-      }, 10000);
+      }, 7000);
       return;
     }
 
@@ -146,8 +146,8 @@
 
     const resize = () => {
       dpr = Math.max(window.devicePixelRatio || 1, 1);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      width = pageReveal.clientWidth;
+      height = pageReveal.clientHeight;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = "100%";
@@ -228,7 +228,12 @@
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
       if (pageReveal && pageReveal.isConnected) {
-        pageReveal.remove();
+        pageReveal.classList.add("is-hidden");
+        window.setTimeout(() => {
+          if (pageReveal && pageReveal.isConnected) {
+            pageReveal.remove();
+          }
+        }, 760);
       }
     };
 
@@ -242,18 +247,18 @@
       }
 
       const time = (now - start) / 1000;
-      const fadeIn = clamp((time - 1) / 0.45, 0, 1);
-      const fadeOut = clamp((6 - time) / 1.05, 0, 1);
+      const fadeIn = clamp((time - 0.65) / 0.4, 0, 1);
+      const fadeOut = clamp((5.9 - time) / 0.95, 0, 1);
       const intensity = fadeIn * fadeOut;
-      const revealOut = clamp((10 - time) / 0.75, 0, 1);
-      const titleVisible = clamp((time - 5) / 0.35, 0, 1) * clamp((10 - time) / 0.75, 0, 1);
+      const revealOut = clamp((7 - time) / 0.7, 0, 1);
+      const titleVisible = clamp((time - 2) / 0.35, 0, 1) * clamp((7 - time) / 0.7, 0, 1);
 
       pageReveal.style.opacity = String(revealOut);
-      title.classList.toggle("is-visible", time >= 5);
+      title.classList.toggle("is-visible", time >= 2);
       title.style.opacity = String(titleVisible);
       const words = title.querySelectorAll(".page-reveal-word");
       words.forEach((word, index) => {
-        const wordStart = 5 + index * 0.72;
+        const wordStart = 2 + index * 0.72;
         const wordProgress = clamp((time - wordStart) / 0.34, 0, 1);
         const wordMotion = clamp((wordStart + 2 - time) / 2, 0, 1);
         const motionTime = Math.max(time - wordStart, 0);
@@ -295,7 +300,7 @@
         ctx.restore();
       }
 
-      if (time < 10.05) {
+      if (time < 7.05) {
         rafId = requestAnimationFrame(frame);
       } else {
         cleanup();
@@ -303,7 +308,7 @@
     };
 
     rafId = requestAnimationFrame(frame);
-    window.setTimeout(cleanup, 10000);
+    window.setTimeout(cleanup, 7000);
   }
 
   function initHeaderScrollState() {
