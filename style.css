@@ -1119,10 +1119,8 @@ h1 .title-line {
 }
 
 .sales-chart-axis-unit {
-  background: linear-gradient(90deg, #56d5ff 0%, #7cff6b 55%, #fff176 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #8cf3ff;
+  text-shadow: none;
 }
 
 .sales-chart-axis-unit span {
@@ -1204,10 +1202,8 @@ h1 .title-line {
 
 .sales-chart-axis-months {
   font-size: 0.88rem;
-  background: linear-gradient(90deg, #56d5ff 0%, #7cff6b 55%, #fff176 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #8cf3ff;
+  text-shadow: none;
 }
 
 .sales-chart-festival {
