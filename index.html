@@ -501,47 +501,122 @@
             </h2>
             <p class="muted contact-intro">
               <span class="lang lang-it">
-                Se hai già data, location e volumi stimati, partiamo da lì: ti diciamo subito come possiamo supportarti e dove intervenire.
+                Compila il form con le informazioni che hai già: ci aiuta a capire subito come supportarti e da dove partire.
+                Così possiamo orientarti fin da subito verso il tipo di supporto più adatto.
               </span>
               <span class="lang lang-en">
-                If you already have the date, location, and estimated volumes, we can start from there: we'll quickly tell you how we can support you and where to focus.
+                Fill in the form with the details you already have: it helps us see how to support you and where to start.
+                That way we can point you to the most suitable kind of support right away.
               </span>
             </p>
           </div>
 
           <div class="contact-card">
-            <dl class="contact-list">
-              <div>
-                <dt>Email:</dt>
-                <dd><a href="mailto:spinalisebastiano@gmail.com">spinalisebastiano@gmail.com</a></dd>
+            <form class="contact-form" action="mailto:seb@fractalflow.it?cc=info@fractalflow.it" method="post" enctype="text/plain">
+              <div class="contact-form-grid">
+                <label class="form-field">
+                  <span class="form-label">
+                    <span class="lang lang-it">Nome e cognome</span>
+                    <span class="lang lang-en">Full name</span>
+                  </span>
+                  <input type="text" name="name" autocomplete="name" required />
+                </label>
+
+                <label class="form-field">
+                  <span class="form-label">
+                    <span class="lang lang-it">Email</span>
+                    <span class="lang lang-en">Email</span>
+                  </span>
+                  <input type="email" name="email" autocomplete="email" required />
+                </label>
+
+                <label class="form-field">
+                  <span class="form-label">
+                    <span class="lang lang-it">Azienda o progetto</span>
+                    <span class="lang lang-en">Company or project</span>
+                  </span>
+                  <input type="text" name="company" autocomplete="organization" />
+                </label>
+
+                <label class="form-field">
+                  <span class="form-label">
+                    <span class="lang lang-it">Data evento</span>
+                    <span class="lang lang-en">Event date</span>
+                  </span>
+                  <input type="text" name="event_date" placeholder="gg / mm / aaaa" />
+                </label>
+
+                <label class="form-field form-field-full">
+                  <span class="form-label">
+                    <span class="lang lang-it">Location</span>
+                    <span class="lang lang-en">Location</span>
+                  </span>
+                  <input type="text" name="location" />
+                </label>
+
+                <label class="form-field form-field-full">
+                  <span class="form-label">
+                    <span class="lang lang-it">Messaggio</span>
+                    <span class="lang lang-en">Message</span>
+                  </span>
+                  <textarea name="message" rows="5" required></textarea>
+                </label>
               </div>
-              <div>
-                <dt>Phone:</dt>
-                <dd><a href="tel:+393791160637">+39 379 116 0637</a></dd>
+
+              <div class="contact-form-footer">
+                <button class="button button-primary" type="submit">
+                  <span class="lang lang-it">Invia richiesta</span>
+                  <span class="lang lang-en">Send request</span>
+                </button>
               </div>
-              <div>
-                <dt>Location:</dt>
-                <dd>
-                  <span class="lang lang-it">Italy / Europe</span>
-                  <span class="lang lang-en">Italy / Europe</span>
-                </dd>
-              </div>
-            </dl>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section site-outro" aria-label="Informazioni finali">
+        <div class="container site-outro-inner">
+          <div class="site-outro-brand">
+            <img class="site-outro-logo" src="images/Logo_nuclear_2.png" alt="" aria-hidden="true" />
+            <div>
+              <p class="site-outro-name">Fractal Flow Event Ops</p>
+              <p class="site-outro-tagline">
+                <span class="lang lang-it">Operazioni pratiche, lettura dei dati e decisioni solide quando l'evento entra nel vivo.</span>
+                <span class="lang lang-en">Practical operations, data reading, and solid decisions when the event is in full flow.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="site-outro-column">
+            <p class="site-outro-label">
+              <span class="lang lang-it">Contatti</span>
+              <span class="lang lang-en">Contact</span>
+            </p>
+            <a class="site-outro-link" href="mailto:info@fractalflow.it">info@fractalflow.it</a>
+            <a class="site-outro-link" href="mailto:seb@fractalflow.it">seb@fractalflow.it</a>
+            <p class="site-outro-note">
+              <span class="lang lang-it">Rispondiamo a richieste, collaborazioni e progetti speciali.</span>
+              <span class="lang lang-en">We reply to requests, collaborations, and special projects.</span>
+            </p>
+          </div>
+
+          <div class="site-outro-column site-outro-column-right">
+            <p class="site-outro-label">
+              <span class="lang lang-it">Info</span>
+              <span class="lang lang-en">Info</span>
+            </p>
+            <a class="site-outro-link" href="#" aria-label="Privacy and Cookie Policy">
+              <span class="lang lang-it">Privacy &amp; Cookie Policy</span>
+              <span class="lang lang-en">Privacy &amp; Cookie Policy</span>
+            </a>
+            <p class="site-outro-note">
+              <span class="lang lang-it">© 2026 Fractal Flow Event Ops. Tutti i diritti riservati.</span>
+              <span class="lang lang-en">© 2026 Fractal Flow Event Ops. All rights reserved.</span>
+            </p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <a class="footer-brand" href="#hero" aria-label="Fractal Flow Event Ops home">
-          <img class="footer-logo" src="images/Logo_nuclear_2.png" alt="" aria-hidden="true" />
-        </a>
-        <p>
-          <span class="lang lang-it">Operazioni pratiche, lettura dei dati e decisioni solide quando l'evento entra nel vivo.</span>
-          <span class="lang lang-en">Practical operations, data reading, and solid decisions when the event is in full flow.</span>
-        </p>
-      </div>
-    </footer>
   </body>
 </html>

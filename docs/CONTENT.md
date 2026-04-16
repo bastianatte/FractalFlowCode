@@ -148,32 +148,71 @@ Metrics:
 
 Scrivici
 
-Se hai già data, location e volumi stimati, partiamo da lì: ti diciamo subito come possiamo supportarti e dove intervenire.
+Compila il form con le informazioni che hai già: ci aiuta a capire subito come supportarti e da dove partire.
 
-Email: hello@fractalfloweventops.com
+Così possiamo orientarti fin da subito verso il tipo di supporto più adatto.
 
-Phone: +39 000 000 0000
+Campi del form:
 
-Location: Italy / Europe
+- Nome e cognome
+- Email
+- Azienda o progetto
+- Data evento
+- Location
+- Messaggio
+
+Mail aziendale: seb@fractalflow.it
+In copia: info@fractalflow.it
 
 ### English
 
 Get in touch
 
-If you already have the date, location, and estimated volumes, we can start from there: we'll quickly tell you how we can support you and where to focus.
+Fill in the form with the details you already have: it helps us see how to support you and where to start.
 
-Email: hello@fractalfloweventops.com
+That way we can point you to the most suitable kind of support right away.
 
-Phone: +39 000 000 0000
+Form fields:
 
-Location: Italy / Europe
+- Full name
+- Email
+- Company or project
+- Event date
+- Location
+- Message
 
-## Footer
+Company inbox: seb@fractalflow.it
+
+## Final Section
 
 ### Italian
 
-Operazioni evento pratiche, dati essenziali e decisioni che tengono quando il ritmo si alza.
+Fractal Flow Event Ops
+
+Operazioni pratiche, lettura dei dati e decisioni solide quando l'evento entra nel vivo.
+
+Contatti:
+
+- info@fractalflow.it
+- seb@fractalflow.it
+
+Info:
+
+- Privacy & Cookie Policy
+- © 2026 Fractal Flow Event Ops. Tutti i diritti riservati.
 
 ### English
 
-Practical event operations, essential data, and decisions that hold when the pace picks up.
+Fractal Flow Event Ops
+
+Practical operations, data reading, and solid decisions when the event is in full flow.
+
+Contacts:
+
+- info@fractalflow.it
+- seb@fractalflow.it
+
+Info:
+
+- Privacy & Cookie Policy
+- © 2026 Fractal Flow Event Ops. All rights reserved.
