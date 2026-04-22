@@ -14,6 +14,19 @@ CTA 1: Contattaci
 
 CTA 2: Scopri i servizi
 
+Timeline orizzontale:
+
+- Prima dell'apertura: setup, staff, briefing e controllo dei flussi in arrivo.
+- Durante l'evento: gestione ingressi, pubblico, criticità e team in movimento.
+- Dopo la chiusura: dati, note operative, report e lettura di ciò che resta da fare.
+
+Mappa orbitale:
+
+- Evento al centro
+- Prima: setup e staff
+- Durante: ingressi e flussi
+- Dopo: report e dati
+
 ### English
 
 Event operations, ticketing support, and post-event analysis.
@@ -23,6 +36,19 @@ We support festivals and event teams with audience flow, ticket sales reading, g
 CTA 1: Contact us
 
 CTA 2: Explore services
+
+Horizontal timeline:
+
+- Before doors: setup, staff, briefing, and incoming flow checks.
+- During the event: gate flow, crowd handling, issues, and team coordination.
+- After close: data, notes, reports, and what remains to be done.
+
+Orbital map:
+
+- Event at the center
+- Before: setup and staff
+- During: gates and flow
+- After: reports and data
 
 ## What we do
 
