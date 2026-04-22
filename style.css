@@ -434,7 +434,7 @@ footer {
   padding-top: 4rem;
   position: relative;
   overflow: clip;
-  background:
+  /* background: */
     /* radial-gradient(circle at 78% 14%, rgba(132, 236, 255, 0.14), transparent 26%),
     radial-gradient(circle at 18% 78%, rgba(255, 103, 199, 0.12), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent 72%); */
