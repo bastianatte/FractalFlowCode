@@ -83,6 +83,16 @@
       return;
     }
 
+    try {
+      if (sessionStorage.getItem("ffeo-reveal-seen") === "1") {
+        pageReveal.remove();
+        return;
+      }
+      sessionStorage.setItem("ffeo-reveal-seen", "1");
+    } catch (_) {
+      // Ignore storage failures in private browsing.
+    }
+
     const canvas = document.createElement("canvas");
     canvas.className = "page-reveal-canvas";
     canvas.setAttribute("aria-hidden", "true");
@@ -118,12 +128,9 @@
     }
 
     const waves = [
-      { kind: "sin", color: [72, 214, 255], base: 0.74, amp: 100, freq: 0.010, speed: 1.7, width: 20, blur: 15, alpha: 0.7, phase: 0.2, float: 0.012, floatSpeed: 0.9 },
-      { kind: "cos", color: [114, 138, 255], base: 0.68, amp: 92, freq: 0.0115, speed: 1.86, width: 18, blur: 14, alpha: 0.72, phase: 1.4, float: 0.014, floatSpeed: 1.05 },
-      { kind: "sin", color: [185, 94, 255], base: 0.62, amp: 88, freq: 0.012, speed: 2.0, width: 17, blur: 14, alpha: 0.74, phase: 2.6, float: 0.016, floatSpeed: 1.18 },
-      { kind: "cos", color: [255, 103, 199], base: 0.57, amp: 84, freq: 0.013, speed: 2.14, width: 16, blur: 13, alpha: 0.76, phase: 0.9, float: 0.018, floatSpeed: 0.82 },
-      { kind: "sin", color: [255, 179, 71], base: 0.52, amp: 80, freq: 0.014, speed: 2.28, width: 15, blur: 13, alpha: 0.78, phase: 2.1, float: 0.016, floatSpeed: 1.12 },
-      { kind: "cos", color: [123, 255, 94], base: 0.47, amp: 76, freq: 0.015, speed: 2.42, width: 14, blur: 12, alpha: 0.76, phase: 0.4, float: 0.014, floatSpeed: 0.98 },
+      { kind: "sin", color: [132, 236, 255], base: 0.66, amp: 96, freq: 0.011, speed: 1.8, width: 18, blur: 14, alpha: 0.78, phase: 0.2, float: 0.012, floatSpeed: 0.9 },
+      { kind: "cos", color: [184, 212, 255], base: 0.56, amp: 86, freq: 0.0125, speed: 2.0, width: 16, blur: 13, alpha: 0.72, phase: 1.6, float: 0.014, floatSpeed: 1.05 },
+      { kind: "sin", color: [210, 236, 255], base: 0.46, amp: 76, freq: 0.014, speed: 2.2, width: 14, blur: 12, alpha: 0.66, phase: 2.8, float: 0.016, floatSpeed: 1.18 },
     ];
 
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
@@ -241,52 +248,51 @@
     resize();
     window.addEventListener("resize", resize, { passive: true });
 
+    const TOTAL = 2.6;
+    const WAVES_START = 0.3;
+    const TITLE_START = 0.7;
+
     const frame = (now) => {
       if (stopped || !pageReveal || !pageReveal.isConnected) {
         return;
       }
 
       const time = (now - start) / 1000;
-      const fadeIn = clamp((time - 0.65) / 0.4, 0, 1);
-      const fadeOut = clamp((5.9 - time) / 0.95, 0, 1);
+      const fadeIn = clamp((time - WAVES_START) / 0.3, 0, 1);
+      const fadeOut = clamp((TOTAL - 0.4 - time) / 0.5, 0, 1);
       const intensity = fadeIn * fadeOut;
-      const revealOut = clamp((7 - time) / 0.7, 0, 1);
-      const titleVisible = clamp((time - 2) / 0.35, 0, 1) * clamp((7 - time) / 0.7, 0, 1);
+      const revealOut = clamp((TOTAL - time) / 0.5, 0, 1);
+      const titleVisible = clamp((time - TITLE_START) / 0.3, 0, 1) * clamp((TOTAL - time) / 0.5, 0, 1);
 
       pageReveal.style.opacity = String(revealOut);
-      title.classList.toggle("is-visible", time >= 2);
+      title.classList.toggle("is-visible", time >= TITLE_START);
       title.style.opacity = String(titleVisible);
       const words = title.querySelectorAll(".page-reveal-word");
       words.forEach((word, index) => {
-        const wordStart = 2 + index * 0.72;
-        const wordProgress = clamp((time - wordStart) / 0.34, 0, 1);
-        const wordMotion = clamp((wordStart + 2 - time) / 2, 0, 1);
+        const wordStart = TITLE_START + index * 0.16;
+        const wordProgress = clamp((time - wordStart) / 0.28, 0, 1);
+        const wordMotion = clamp((TOTAL - 0.4 - time) / 0.8, 0, 1);
         const motionTime = Math.max(time - wordStart, 0);
         word.style.opacity = String(wordProgress);
         word.style.transform = "none";
 
         const letters = word.querySelectorAll(".page-reveal-letter");
         letters.forEach((letter, letterIndex) => {
-          const letterPhase = index * 0.74 + letterIndex * 0.48;
-          const letterY = Math.sin(motionTime * 8.8 + letterPhase) * 13 * wordMotion;
-          const letterX = Math.cos(motionTime * 6.3 + letterPhase * 0.82) * 2.5 * wordMotion;
-          const tilt = Math.sin(motionTime * 5.1 + letterPhase) * 7.5 * wordMotion;
-          const scale = 1 + Math.sin(motionTime * 6.7 + letterPhase) * 0.018 * wordMotion;
+          const letterPhase = index * 0.74 + letterIndex * 0.42;
+          const letterY = Math.sin(motionTime * 6.2 + letterPhase) * 4 * wordMotion;
+          const tilt = Math.sin(motionTime * 4.4 + letterPhase) * 2 * wordMotion;
           letter.style.opacity = String(wordProgress);
-          letter.style.transform = `translate3d(${letterX.toFixed(2)}px, ${letterY.toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+          letter.style.transform = `translate3d(0, ${letterY.toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg)`;
         });
       });
       ctx.clearRect(0, 0, width, height);
 
-      const bg = ctx.createLinearGradient(0, 0, 0, height);
-      bg.addColorStop(0, "#040406");
-      bg.addColorStop(1, "#040406");
-      ctx.fillStyle = bg;
+      ctx.fillStyle = "#040406";
       ctx.fillRect(0, 0, width, height);
 
-      if (time >= 1) {
+      if (time >= WAVES_START) {
         for (const wave of waves) {
-          drawWave(wave, time - 1, intensity);
+          drawWave(wave, time - WAVES_START, intensity);
         }
 
         ctx.save();
@@ -300,7 +306,7 @@
         ctx.restore();
       }
 
-      if (time < 7.05) {
+      if (time < TOTAL + 0.1) {
         rafId = requestAnimationFrame(frame);
       } else {
         cleanup();
@@ -308,7 +314,7 @@
     };
 
     rafId = requestAnimationFrame(frame);
-    window.setTimeout(cleanup, 7000);
+    window.setTimeout(cleanup, (TOTAL + 0.1) * 1000);
   }
 
   function initHeaderScrollState() {

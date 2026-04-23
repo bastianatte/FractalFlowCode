@@ -1,4 +1,4 @@
-# Fractal Flow Event Ops Content
+# Fractal Flow Events Ops Content
 
 This file contains the website copy in both languages, organized by section.
 
@@ -54,13 +54,13 @@ Orbital map:
 
 ### Italian
 
-Fractal Flow Event Ops aiuta gli organizzatori a trasformare l’operatività sul campo in processi più chiari, misurabili e gestibili.
+Fractal Flow Events Ops aiuta gli organizzatori a trasformare l’operatività sul campo in processi più chiari, misurabili e gestibili.
 
 Osserviamo ingressi, prevendite e priorità operative per trasformare i dati sul campo in processi più chiari, misurabili e gestibili.
 
 ### English
 
-Fractal Flow Event Ops helps organizers turn on-the-ground event work into a clearer operating picture.
+Fractal Flow Events Ops helps organizers turn on-the-ground event work into a clearer operating picture.
 
 We observe entrances, ticket sales, and operational priorities to turn field data into clearer, measurable, and manageable processes.
 
@@ -213,7 +213,7 @@ Company inbox: seb@fractalflow.it
 
 ### Italian
 
-Fractal Flow Event Ops
+Fractal Flow Events Ops
 
 Operazioni pratiche, lettura dei dati e decisioni solide quando l'evento entra nel vivo.
 
@@ -225,11 +225,11 @@ Contatti:
 Info:
 
 - Privacy & Cookie Policy
-- © 2026 Fractal Flow Event Ops. Tutti i diritti riservati.
+- © 2026 Fractal Flow Events Ops. Tutti i diritti riservati.
 
 ### English
 
-Fractal Flow Event Ops
+Fractal Flow Events Ops
 
 Practical operations, data reading, and solid decisions when the event is in full flow.
 
@@ -241,4 +241,4 @@ Contacts:
 Info:
 
 - Privacy & Cookie Policy
-- © 2026 Fractal Flow Event Ops. All rights reserved.
+- © 2026 Fractal Flow Events Ops. All rights reserved.

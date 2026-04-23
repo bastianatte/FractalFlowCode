@@ -1,8 +1,8 @@
-# Fractal Flow Event Ops
+# Fractal Flow Events Ops
 
 ## Project Overview
 
-Fractal Flow Event Ops is a static, bilingual landing page for a service-based company working in events and festivals.
+Fractal Flow Events Ops is a static, bilingual landing page for a service-based company working in events and festivals.
 
 The site is designed to feel practical and credible, with a focus on live operations, ticketing support, crowd flow management, pre-event sales reading, post-event reporting, and the details production teams actually need.
 
