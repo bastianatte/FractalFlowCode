@@ -750,6 +750,40 @@
   initPopovers();
   initCounters();
   initStarStrip();
+
+  (function initLiveTicker() {
+    const ticker = document.querySelector(".live-ticker-text");
+    if (!ticker) return;
+
+    const gates = ["Ingresso Nord", "Ingresso Sud", "Ingresso Est", "Ingresso Ovest", "Gate VIP", "Gate Staff"];
+    const events = [
+      (n, g, t) => `🎫 Biglietto #${n} scansionato · ${t} · ${g}`,
+      (n, g, t) => `✅ Accesso confermato · #${n} · ${t} · ${g}`,
+      (n, g, t) => `🎟️ Check-in completato · ${g} · ${t}`,
+      (n, g, t) => `📲 Biglietto #${n} validato · ${t} · ${g}`,
+    ];
+
+    function randomTicket() { return Math.floor(3200 + Math.random() * 9800); }
+    function randomGate()   { return gates[Math.floor(Math.random() * gates.length)]; }
+    function randomTime()   {
+      const h = String(Math.floor(Math.random() * 6) + 18).padStart(2, "0");
+      const m = String(Math.floor(Math.random() * 60)).padStart(2, "0");
+      const s = String(Math.floor(Math.random() * 60)).padStart(2, "0");
+      return `${h}:${m}:${s}`;
+    }
+
+    function next() {
+      const fn = events[Math.floor(Math.random() * events.length)];
+      ticker.classList.add("fade");
+      setTimeout(() => {
+        ticker.textContent = fn(randomTicket(), randomGate(), randomTime());
+        ticker.classList.remove("fade");
+      }, 400);
+    }
+
+    next();
+    setInterval(next, 3200);
+  })();
   if (sections.length) {
     const hashTarget = location.hash ? location.hash.replace("#", "") : "";
     const initialSection = sections.find((section) => section.id === hashTarget) || sections[0];
