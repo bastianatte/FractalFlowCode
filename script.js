@@ -655,11 +655,101 @@
     });
   }
 
+  function initStarStrip() {
+    const strip = document.querySelector(".clients-strip");
+    if (!strip) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;";
+    strip.insertBefore(canvas, strip.firstChild);
+
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    const starColors = [
+      [255, 255, 255],
+      [220, 200, 255],
+      [180, 220, 255],
+      [200, 60, 255],
+      [0, 220, 255],
+    ];
+
+    function resize() {
+      canvas.width = strip.offsetWidth;
+      canvas.height = strip.offsetHeight;
+      const count = Math.floor((canvas.width * canvas.height) / 600);
+      stars = Array.from({ length: count }, () => {
+        const col = starColors[Math.floor(Math.random() * starColors.length)];
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.1 + 0.2,
+          baseAlpha: Math.random() * 0.45 + 0.10,
+          speed: Math.random() * 0.006 + 0.002,
+          phase: Math.random() * Math.PI * 2,
+          col,
+        };
+      });
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach((s) => {
+        const alpha = Math.max(0, Math.min(1, s.baseAlpha + Math.sin(t * s.speed + s.phase) * 0.25));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.col[0]},${s.col[1]},${s.col[2]},${alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    requestAnimationFrame(draw);
+  }
+
+  function initCounters() {
+    const stats = Array.from(document.querySelectorAll(".stat-number[data-target]"));
+    if (!stats.length) return;
+
+    const countUp = (el) => {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals || "0");
+      const suffix = el.dataset.suffix || "";
+      const duration = 2000;
+      const start = performance.now();
+
+      const step = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
+        el.textContent = (decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toLocaleString("it-IT")) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          countUp(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    stats.forEach((el) => observer.observe(el));
+  }
+
   setLanguage(savedLang || root.dataset.lang || "it");
   initPageReveal();
   initSalesCharts();
   initHeaderScrollState();
   initPopovers();
+  initCounters();
+  initStarStrip();
   if (sections.length) {
     const hashTarget = location.hash ? location.hash.replace("#", "") : "";
     const initialSection = sections.find((section) => section.id === hashTarget) || sections[0];

@@ -904,6 +904,74 @@ h1 .title-line {
   align-items: start;
 }
 
+.clients-strip {
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(132, 236, 255, 0.10);
+  border-bottom: 1px solid rgba(132, 236, 255, 0.10);
+  overflow: hidden;
+  position: relative;
+}
+
+.clients-strip-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: clamp(1rem, 4vw, 3rem);
+  position: relative;
+  z-index: 1;
+}
+
+.clients-strip-label {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.70rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+.clients-track-wrap {
+  overflow: hidden;
+  flex: 1;
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.clients-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: clientsScroll 22s linear infinite;
+}
+
+.client-name {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0 1.6rem;
+  background: linear-gradient(135deg, rgba(200, 60, 255, 0.75), rgba(0, 230, 255, 0.75));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: filter 0.3s ease;
+}
+
+.client-name:hover {
+  filter: brightness(1.6);
+}
+
+.client-sep {
+  color: rgba(184, 168, 255, 0.25);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+@keyframes clientsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 .section#what-we-do .section-grid {
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
