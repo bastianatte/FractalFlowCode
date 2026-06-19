@@ -406,10 +406,260 @@
     }
   })();
 
+  function initPopovers() {
+    const triggers = Array.from(document.querySelectorAll("[data-popover]"));
+    if (!triggers.length) return;
+
+    const popover = document.createElement("div");
+    popover.className = "ffeo-popover";
+    popover.setAttribute("aria-hidden", "true");
+    document.body.appendChild(popover);
+
+    let hideTimer = null;
+    let counterInterval = null;
+
+    function getLang() {
+      return root.dataset.lang === "en" ? "en" : "it";
+    }
+
+    function renderContent(type) {
+      const lang = getLang();
+      if (type === "sales-line") {
+        const label = lang === "it" ? "Andamento vendite" : "Sales trend";
+        return `<p class="pop-title">${label}</p>
+          <svg class="pop-svg" viewBox="0 0 170 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polyline class="pop-line" points="8,46 32,38 58,40 84,22 110,28 136,12 162,6"
+              stroke="#84ecff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="pop-dot" cx="8" cy="46" r="3" fill="#84ecff" style="animation-delay:0.5s"/>
+            <circle class="pop-dot" cx="84" cy="22" r="3" fill="#84ecff" style="animation-delay:0.9s"/>
+            <circle class="pop-dot" cx="162" cy="6" r="3.5" fill="#84ecff" style="animation-delay:1.2s"/>
+          </svg>`;
+      }
+      if (type === "access-counter") {
+        const title = lang === "it" ? "Accessi in tempo reale" : "Real-time access";
+        const label = lang === "it" ? "scansioni / ora" : "scans / hour";
+        return `<p class="pop-title">${title}</p>
+          <div class="pop-counter">
+            <span class="pop-counter-num" data-pop-count="4821">0</span>
+            <span class="pop-counter-label">${label}</span>
+          </div>`;
+      }
+      if (type === "checklist") {
+        const title = lang === "it" ? "Stato preparazione" : "Preparation status";
+        const items = lang === "it"
+          ? ["Selezione team", "Assegnazione turni", "Formazione completata"]
+          : ["Team selection", "Shift assignment", "Training complete"];
+        return `<p class="pop-title">${title}</p>
+          <ul class="pop-checklist">
+            ${items.map((item) => `<li class="pop-check">${item}</li>`).join("")}
+          </ul>`;
+      }
+      if (type === "kpi-dashboard") {
+        const title = lang === "it" ? "KPI evento" : "Event KPIs";
+        const trend = lang === "it" ? "vs evento precedente" : "vs previous event";
+        return `<p class="pop-title">${title}</p>
+          <div class="pop-kpi">
+            <div class="pop-kpi-main">
+              <span class="pop-kpi-num" data-pop-count="9420" data-pop-prefix="">0</span>
+              <span class="pop-kpi-trend">↑ +18%</span>
+            </div>
+            <span class="pop-kpi-sub">${lang === "it" ? "presenze totali" : "total attendance"}</span>
+            <svg class="pop-svg pop-kpi-spark" viewBox="0 0 170 36" fill="none" aria-hidden="true">
+              <polyline class="pop-line" points="6,28 30,22 54,24 78,14 102,18 126,8 150,4 164,6"
+                stroke="#84ecff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="pop-kpi-trend-label">${trend}</span>
+          </div>`;
+      }
+      if (type === "gate-capacity") {
+        const title = lang === "it" ? "Capacità ingressi" : "Gate capacity";
+        const gates = lang === "it"
+          ? [["Ingresso Nord", 847, 1200], ["Ingresso Sud", 612, 1000], ["VIP", 94, 120]]
+          : [["North Gate", 847, 1200], ["South Gate", 612, 1000], ["VIP", 94, 120]];
+        return `<p class="pop-title">${title}</p>
+          <div class="pop-gates">
+            ${gates.map((g, i) => `
+              <div class="pop-gate-row" style="animation-delay:${(i * 0.2).toFixed(2)}s">
+                <div class="pop-gate-header">
+                  <span class="pop-gate-name">${g[0]}</span>
+                  <span class="pop-gate-count">${g[1].toLocaleString("it-IT")} / ${g[2].toLocaleString("it-IT")}</span>
+                </div>
+                <div class="pop-progress-track">
+                  <div class="pop-gate-fill" style="--pct:${Math.round((g[1]/g[2])*100)}%;--delay:${(i * 0.2 + 0.15).toFixed(2)}s"></div>
+                </div>
+              </div>`).join("")}
+          </div>`;
+      }
+      if (type === "issue-dots") {
+        const title = lang === "it" ? "Stato criticità" : "Issue status";
+        const items = lang === "it"
+          ? ["Coda ingresso nord", "Scanner offline", "Accesso VIP"]
+          : ["North gate queue", "Scanner offline", "VIP access"];
+        return `<p class="pop-title">${title}</p>
+          <ul class="pop-checklist">
+            ${items.map((item) => `<li class="pop-check pop-issue">${item}</li>`).join("")}
+          </ul>`;
+      }
+      if (type === "status-board") {
+        const title = lang === "it" ? "Stato team" : "Team status";
+        const teams = lang === "it"
+          ? [["Prevendita online", "in-wait", "Attivo"], ["Cassa on-site", "in-progress", "Attivo"], ["Pagamenti", "active", "Attivo"]]
+          : [["Online presales", "in-wait", "Active"], ["On-site box office", "in-progress", "Active"], ["Payments", "active", "Active"]];
+        return `<p class="pop-title">${title}</p>
+          <div class="pop-status-list">
+            ${teams.map((t, i) => `
+              <div class="pop-status-row" style="animation-delay:${(i * 0.22).toFixed(2)}s">
+                <span class="pop-status-dot pop-status-${t[1]}" data-status-to="${i < 2 ? "active" : ""}" style="transition-delay:${(i * 0.22 + 0.6).toFixed(2)}s"></span>
+                <span class="pop-status-name">${t[0]}</span>
+                <span class="pop-status-label pop-status-label-${t[1]}" data-label-to="${i < 2 ? t[2] : ""}" style="transition-delay:${(i * 0.22 + 0.6).toFixed(2)}s">${i === 2 ? t[2] : (lang === "it" ? "In attesa" : "Standby")}</span>
+              </div>`).join("")}
+          </div>`;
+      }
+      if (type === "ledger") {
+        const title = lang === "it" ? "Registro di cassa" : "Cash ledger";
+        const rows = lang === "it"
+          ? [["Biglietti", "8.420"], ["Bar & Food", "2.180"], ["Merchandising", "640"]]
+          : [["Tickets", "8.420"], ["Bar & Food", "2.180"], ["Merchandise", "640"]];
+        const totalLabel = lang === "it" ? "TOTALE" : "TOTAL";
+        return `<p class="pop-title">${title}</p>
+          <div class="pop-ledger">
+            ${rows.map((r, i) => `
+              <div class="pop-ledger-row" style="animation-delay:${(i * 0.22).toFixed(2)}s">
+                <span class="pop-ledger-item">${r[0]}</span>
+                <span class="pop-ledger-amount">€ ${r[1]}</span>
+              </div>`).join("")}
+            <div class="pop-ledger-divider" style="animation-delay:0.72s"></div>
+            <div class="pop-ledger-row pop-ledger-total" style="animation-delay:0.82s">
+              <span class="pop-ledger-item">${totalLabel}</span>
+              <span class="pop-ledger-amount" data-pop-count="11240" data-pop-prefix="€ ">€ 0</span>
+            </div>
+          </div>`;
+      }
+      if (type === "followup") {
+        const title = lang === "it" ? "Attività post-evento" : "Post-event activity";
+        const rows = lang === "it"
+          ? [["Database", "+842"], ["Email", "+124"], ["Rimborsi", "+12"]]
+          : [["Database", "+842"], ["Emails", "+124"], ["Refunds", "+12"]];
+        return `<p class="pop-title">${title}</p>
+          <div class="pop-notif-list">
+            ${rows.map((r, i) => `
+              <div class="pop-notif-row" style="animation-delay:${(i * 0.18).toFixed(2)}s">
+                <span class="pop-notif-label">${r[0]}</span>
+                <span class="pop-notif-badge">${r[1]}</span>
+              </div>`).join("")}
+          </div>`;
+      }
+      return "";
+    }
+
+    function runAnimations(type) {
+      if (type === "access-counter" || type === "gate-scan" || type === "ledger") {
+        const el = popover.querySelector("[data-pop-count]");
+        if (!el) return;
+        const target = parseInt(el.dataset.popCount, 10);
+        const prefix = el.dataset.popPrefix || "";
+        const startDelay = type === "ledger" ? 900 : 0;
+        setTimeout(() => {
+          let current = 0;
+          const step = Math.ceil(target / 38);
+          clearInterval(counterInterval);
+          counterInterval = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = prefix + current.toLocaleString("it-IT");
+            if (current >= target) clearInterval(counterInterval);
+          }, 28);
+        }, startDelay);
+      }
+      if (type === "checklist" || type === "followup") {
+        const items = popover.querySelectorAll(".pop-check");
+        items.forEach((item, i) => {
+          setTimeout(() => item.classList.add("is-checked"), 250 + i * 320);
+        });
+      }
+      if (type === "issue-dots") {
+        const items = popover.querySelectorAll(".pop-issue");
+        items.forEach((item, i) => {
+          setTimeout(() => item.classList.add("is-resolved"), 300 + i * 400);
+        });
+      }
+      if (type === "status-board") {
+        const dots = popover.querySelectorAll("[data-status-to]");
+        const labels = popover.querySelectorAll("[data-label-to]");
+        dots.forEach((dot, i) => {
+          const to = dot.dataset.statusTo;
+          if (!to) return;
+          setTimeout(() => dot.classList.add("pop-status-active"), 600 + i * 220);
+        });
+        labels.forEach((label, i) => {
+          const to = label.dataset.labelTo;
+          if (!to) return;
+          setTimeout(() => { label.textContent = to; label.classList.add("pop-status-label-active"); }, 600 + i * 220);
+        });
+      }
+      if (type === "kpi-dashboard") {
+        const el = popover.querySelector("[data-pop-count]");
+        if (!el) return;
+        const target = parseInt(el.dataset.popCount, 10);
+        let current = 0;
+        const step = Math.ceil(target / 38);
+        clearInterval(counterInterval);
+        counterInterval = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current.toLocaleString("it-IT");
+          if (current >= target) clearInterval(counterInterval);
+        }, 28);
+      }
+    }
+
+    function show(trigger) {
+      clearTimeout(hideTimer);
+      clearInterval(counterInterval);
+      const type = trigger.dataset.popover;
+      popover.innerHTML = renderContent(type);
+      popover.style.visibility = "hidden";
+      popover.style.opacity = "0";
+      popover.style.transform = "none";
+      popover.style.top = "-9999px";
+      popover.style.left = "-9999px";
+      document.body.appendChild(popover);
+
+      requestAnimationFrame(() => {
+        const rect = trigger.getBoundingClientRect();
+        const popWidth = 210;
+        const popHeight = popover.offsetHeight;
+        let left = rect.left + rect.width / 2 - popWidth / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - popWidth - 8));
+        let top = rect.top - popHeight - 12;
+        if (top < 8) top = rect.bottom + 10;
+        popover.style.width = popWidth + "px";
+        popover.style.left = left + "px";
+        popover.style.top = top + "px";
+        popover.style.visibility = "";
+        popover.style.opacity = "";
+        popover.style.transform = "";
+        popover.classList.add("is-visible");
+        runAnimations(type);
+      });
+    }
+
+    function hide() {
+      clearInterval(counterInterval);
+      popover.classList.remove("is-visible");
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("mouseenter", () => show(trigger));
+      trigger.addEventListener("mouseleave", () => {
+        hideTimer = setTimeout(hide, 80);
+      });
+    });
+  }
+
   setLanguage(savedLang || root.dataset.lang || "it");
   initPageReveal();
   initSalesCharts();
   initHeaderScrollState();
+  initPopovers();
   if (sections.length) {
     const hashTarget = location.hash ? location.hash.replace("#", "") : "";
     const initialSection = sections.find((section) => section.id === hashTarget) || sections[0];
