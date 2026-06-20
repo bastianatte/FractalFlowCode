@@ -751,11 +751,70 @@
   initCounters();
   initStarStrip();
 
+  (function initDashboard() {
+    const feed      = document.getElementById("dash-feed");
+    const elScanned = document.getElementById("dash-scanned");
+    const elRate    = document.getElementById("dash-rate");
+    const elCap     = document.getElementById("dash-capacity");
+    const elBar     = document.getElementById("dash-gate-bar");
+    const elPct     = document.getElementById("dash-gate-pct");
+    if (!feed) return;
+
+    const TOTAL = 5800;
+    let scanned = 3241;
+    let rate    = 87;
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function nowTime() {
+      const d = new Date();
+      return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    }
+    function fmt(n) { return n.toLocaleString("it-IT"); }
+
+    function updateKPIs() {
+      elScanned.textContent = fmt(scanned);
+      elRate.innerHTML = `${rate}<span class="dashboard-kpi-unit">/h</span>`;
+      const pct = Math.min(Math.round((scanned / TOTAL) * 100), 100);
+      elCap.innerHTML = `${pct}<span class="dashboard-kpi-unit">%</span>`;
+      elBar.style.width = pct + "%";
+      elPct.textContent = pct + "%";
+    }
+
+    function addFeedRow(ticket) {
+      const rows = feed.querySelectorAll(".dashboard-feed-row");
+      rows.forEach(r => r.classList.add("dimmed"));
+      if (rows.length >= 4) rows[rows.length - 1].remove();
+
+      const row = document.createElement("div");
+      row.className = "dashboard-feed-row";
+      row.innerHTML = `
+        <span class="dashboard-feed-time">${nowTime()}</span>
+        <span class="dashboard-feed-gate">Gate</span>
+        <span class="dashboard-feed-ticket">#${ticket}</span>
+        <span class="dashboard-feed-ok">✓</span>`;
+      feed.insertBefore(row, feed.firstChild);
+    }
+
+    function tick() {
+      const delta = Math.floor(Math.random() * 3) + 1;
+      scanned += delta;
+      rate = Math.max(40, Math.min(150, rate + (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 8)));
+      for (let i = 0; i < delta; i++) addFeedRow(scanned - i);
+      updateKPIs();
+    }
+
+    updateKPIs();
+    addFeedRow(scanned);
+    addFeedRow(scanned - 1);
+    addFeedRow(scanned - 2);
+    setInterval(tick, 2800);
+  })();
+
   (function initLiveTicker() {
     const ticker = document.querySelector(".live-ticker-text");
     if (!ticker) return;
 
-    const gates = ["Ingresso Nord", "Ingresso Sud", "Ingresso Est", "Ingresso Ovest", "Gate VIP", "Gate Staff"];
+    const gates = ["Gate"];
     const events = [
       (n, g, t) => `🎫 Biglietto #${n} scansionato · ${t} · ${g}`,
       (n, g, t) => `✅ Accesso confermato · #${n} · ${t} · ${g}`,

@@ -90,6 +90,12 @@
                 </a>
               </li>
               <li>
+                <a class="nav-link" href="#live-dashboard" data-nav-link data-section="live-dashboard">
+                  <span class="lang lang-it">Live</span>
+                  <span class="lang lang-en">Live</span>
+                </a>
+              </li>
+              <li>
                 <a class="nav-link" href="#contact" data-nav-link data-section="contact">
                   <span class="lang lang-it">Contatti</span>
                   <span class="lang lang-en">Contacts</span>
@@ -660,6 +666,67 @@
                 <span class="lang lang-it">Richiedi il case study completo</span>
                 <span class="lang lang-en">Request the full case study</span>
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="live-dashboard">
+        <div class="container">
+          <div class="section-intro compact">
+            <h2>
+              <span class="lang lang-it">Operazioni in tempo reale.</span>
+              <span class="lang lang-en">Real-time operations.</span>
+            </h2>
+          </div>
+
+          <div class="dashboard-panel">
+            <div class="dashboard-header">
+              <span class="dashboard-live-dot"></span>
+              <span class="dashboard-live-label">LIVE</span>
+              <span class="dashboard-event-name">7 Chakras Festival 2026</span>
+            </div>
+
+            <div class="dashboard-kpis">
+              <div class="dashboard-kpi">
+                <span class="dashboard-kpi-value" id="dash-scanned">0</span>
+                <span class="dashboard-kpi-label">
+                  <span class="lang lang-it">biglietti scansionati</span>
+                  <span class="lang lang-en">tickets scanned</span>
+                </span>
+              </div>
+              <div class="dashboard-kpi">
+                <span class="dashboard-kpi-value" id="dash-rate">0<span class="dashboard-kpi-unit">/h</span></span>
+                <span class="dashboard-kpi-label">
+                  <span class="lang lang-it">velocità scansione</span>
+                  <span class="lang lang-en">scan rate</span>
+                </span>
+              </div>
+              <div class="dashboard-kpi">
+                <span class="dashboard-kpi-value" id="dash-capacity">0<span class="dashboard-kpi-unit">%</span></span>
+                <span class="dashboard-kpi-label">
+                  <span class="lang lang-it">capacità occupata</span>
+                  <span class="lang lang-en">capacity filled</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="dashboard-feed" id="dash-feed" aria-live="polite">
+            </div>
+
+            <div class="dashboard-gate">
+              <div class="dashboard-gate-info">
+                <span class="dashboard-gate-dot"></span>
+                <span class="dashboard-gate-name">Gate</span>
+                <span class="dashboard-gate-status">
+                  <span class="lang lang-it">aperto</span>
+                  <span class="lang lang-en">open</span>
+                </span>
+              </div>
+              <div class="dashboard-gate-bar-wrap">
+                <div class="dashboard-gate-bar" id="dash-gate-bar"></div>
+              </div>
+              <span class="dashboard-gate-pct" id="dash-gate-pct">0%</span>
             </div>
           </div>
         </div>
