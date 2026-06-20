@@ -764,6 +764,12 @@
   (function initServiceGlyphs() {
     const cards = document.querySelectorAll(".service-card");
     const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモラリルレロワヲンΔΨΦΩΣΛΘΠ⌬⍟⊕⊗◈✦⟁∴∵⋮⋯╬╪╫░▒▓";
+    const palette = [
+      ["rgba(132,236,255,VAL)", "rgba(132,236,255,GLW)"],
+      ["rgba(59,90,255,VAL)",   "rgba(100,140,255,GLW)"],
+      ["rgba(200,60,255,VAL)",  "rgba(200,60,255,GLW)"],
+      ["rgba(184,212,255,VAL)", "rgba(184,212,255,GLW)"],
+    ];
 
     cards.forEach((card) => {
       let container = null;
@@ -777,7 +783,7 @@
         container.className = "service-glyphs";
         card.appendChild(container);
 
-        const count = 80;
+        const count = 130;
         for (let i = 0; i < count; i++) {
           const span = document.createElement("span");
           span.className = "service-glyph";
@@ -785,15 +791,20 @@
 
           const x = 3 + Math.random() * 88;
           const y = Math.random() * 95;
-          const op = (0.45 + Math.random() * 0.4).toFixed(2);
+          const op = (0.5 + Math.random() * 0.4).toFixed(2);
           const dur = (0.55 + Math.random() * 0.45).toFixed(2);
           const size = (0.62 + Math.random() * 0.34).toFixed(2);
+          const [colorTpl, glowTpl] = palette[Math.floor(Math.random() * palette.length)];
+          const color = colorTpl.replace("VAL", op);
+          const glow = glowTpl.replace("GLW", (parseFloat(op) * 0.9).toFixed(2));
 
           span.style.left = x + "%";
           span.style.top = y + "%";
           span.style.fontSize = size + "rem";
           span.style.setProperty("--glyph-op", op);
           span.style.setProperty("--glyph-dur", dur + "s");
+          span.style.setProperty("--glyph-color", color);
+          span.style.setProperty("--glyph-glow", glow);
           span.style.animationDelay = ((y / 100) * 0.52 + Math.random() * 0.06).toFixed(3) + "s";
 
           container.appendChild(span);

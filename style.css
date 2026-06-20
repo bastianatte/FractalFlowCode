@@ -1613,8 +1613,8 @@ h1 .title-line {
 .service-glyph {
   position: absolute;
   font-family: 'Courier New', monospace;
-  color: rgba(132, 236, 255, 0.72);
-  text-shadow: 0 0 10px rgba(132, 236, 255, 1);
+  color: var(--glyph-color, rgba(132, 236, 255, 0.72));
+  text-shadow: 0 0 10px var(--glyph-glow, rgba(132, 236, 255, 1));
   line-height: 1;
   opacity: 0;
   animation: glyphAppear var(--glyph-dur, 0.7s) ease-out forwards;
