@@ -777,7 +777,7 @@
         container.className = "service-glyphs";
         card.appendChild(container);
 
-        const count = 42;
+        const count = 80;
         for (let i = 0; i < count; i++) {
           const span = document.createElement("span");
           span.className = "service-glyph";
