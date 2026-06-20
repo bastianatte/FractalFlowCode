@@ -1990,9 +1990,9 @@ h1 .title-line {
   transform: scaleY(0.08);
   transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 22%),
-    linear-gradient(180deg, #84ecff 0%, #4fb8d4 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 20%),
+    linear-gradient(180deg, rgba(132, 236, 255, 1) 0%, rgba(130, 60, 255, 0.9) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0 10px rgba(132, 236, 255, 0.2);
 }
 
 .sales-chart.is-visible .sales-chart-bar-fill {
@@ -2015,7 +2015,7 @@ h1 .title-line {
 }
 
 .sales-chart-area {
-  fill: rgba(132, 236, 255, 0.06);
+  fill: rgba(100, 60, 255, 0.08);
   stroke: none;
 }
 
