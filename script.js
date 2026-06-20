@@ -751,6 +751,61 @@
   initCounters();
   initStarStrip();
 
+  (function initStars() {
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1;";
+    document.body.insertBefore(canvas, document.body.firstChild);
+
+    const ctx = canvas.getContext("2d");
+    const starColors = [[255,255,255],[220,200,255],[180,220,255],[200,60,255],[0,220,255]];
+    let stars = [];
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const count = Math.floor((canvas.width * canvas.height) / 600);
+      stars = Array.from({ length: count }, () => {
+        const col = starColors[Math.floor(Math.random() * starColors.length)];
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.3 + 0.2,
+          baseAlpha: Math.random() * 0.45 + 0.06,
+          speed: Math.random() * 0.005 + 0.002,
+          phase: Math.random() * Math.PI * 2,
+          col,
+        };
+      });
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach((s) => {
+        const alpha = Math.max(0, Math.min(1, s.baseAlpha + Math.sin(t * s.speed + s.phase) * 0.28));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.col[0]},${s.col[1]},${s.col[2]},${alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    requestAnimationFrame(draw);
+  })();
+
+  (function initHeroGlitch() {
+    const h1 = document.querySelector(".hero-copy h1");
+    if (!h1) return;
+    function glitch() {
+      h1.classList.add("glitching");
+      setTimeout(() => h1.classList.remove("glitching"), 560);
+      setTimeout(glitch, 1500 + Math.random() * 2000);
+    }
+    setTimeout(glitch, 1000 + Math.random() * 1000);
+  })();
+
   (function initDashboard() {
     const feed      = document.getElementById("dash-feed");
     const elScanned = document.getElementById("dash-scanned");
