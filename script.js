@@ -744,6 +744,16 @@
   }
 
   setLanguage(savedLang || root.dataset.lang || "it");
+
+  (function syncTickerHeight() {
+    const ticker = document.querySelector(".live-ticker");
+    if (!ticker) return;
+    const update = () =>
+      root.style.setProperty("--ticker-height", ticker.offsetHeight + "px");
+    update();
+    window.addEventListener("resize", update, { passive: true });
+  })();
+
   initPageReveal();
   initSalesCharts();
   initHeaderScrollState();
