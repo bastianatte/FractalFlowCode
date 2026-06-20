@@ -25,12 +25,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   position: relative;
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 82% 8%, rgba(132, 236, 255, 0.10), transparent 26%),
     radial-gradient(circle at 18% 74%, rgba(132, 236, 255, 0.06), transparent 28%),
@@ -56,26 +58,37 @@ body::before {
   z-index: 0;
   background:
     radial-gradient(ellipse at center, rgba(12, 8, 24, 0) 30%, rgba(12, 8, 24, 0.14) 58%, rgba(12, 8, 24, 0.62) 82%, rgba(12, 8, 24, 0.94) 100%),
-    radial-gradient(circle at 50% 90%, rgba(132, 236, 255, 0.12), transparent 52%),
-    url("images/Soundwaves_round.svg") 50% calc(100% + 200px) / min(132vw, 1480px) no-repeat;
-  opacity: 0.36;
+    radial-gradient(circle at 50% 90%, rgba(132, 236, 255, 0.12), transparent 52%);
+  opacity: 0.5;
   mix-blend-mode: screen;
-  filter: saturate(1.05) contrast(1.02);
-  -webkit-mask-image: radial-gradient(circle at 50% 90%, rgba(0, 0, 0, 1) 0 28%, rgba(0, 0, 0, 0.98) 44%, rgba(0, 0, 0, 0.72) 58%, rgba(0, 0, 0, 0) 82%);
-  mask-image: radial-gradient(circle at 50% 90%, rgba(0, 0, 0, 1) 0 28%, rgba(0, 0, 0, 0.98) 44%, rgba(0, 0, 0, 0.72) 58%, rgba(0, 0, 0, 0) 82%);
-  transform-origin: 50% 100%;
-  animation: wavesPulse 7s ease-in-out infinite;
 }
 
-@keyframes wavesPulse {
-  0%, 100% {
-    opacity: 0.36;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.58;
-    transform: scale(1.06);
-  }
+.bg-rings {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: min(130vw, 1400px);
+  height: min(130vw, 1400px);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.62;
+  mix-blend-mode: screen;
+  filter: saturate(1.1) contrast(1.04);
+}
+
+.bg-rings svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-rings circle {
+  animation: ringPulse 5s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
 }
 
 body::after {
@@ -886,7 +899,8 @@ footer {
 
 /* ── Hero glitch ──────────────────────────────────────── */
 
-h1.glitching {
+h1.glitching,
+.brand-text.glitching {
   animation: heroGlitch 0.55s steps(1) forwards;
 }
 
@@ -1189,9 +1203,12 @@ p {
 }
 
 h1 {
-  font-size: clamp(1.82rem, 3.1vw, 2.9rem);
-  line-height: 1.02;
-  letter-spacing: -0.042em;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 5rem);
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   max-width: 20ch;
 }
 
@@ -2403,8 +2420,8 @@ html[data-lang="en"] .lang-en {
   }
 
   h1 {
-    font-size: clamp(1.72rem, 5.8vw, 2.35rem);
-    max-width: 14ch;
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    max-width: 18ch;
   }
 
   .brand-logo {
@@ -2424,7 +2441,7 @@ html[data-lang="en"] .lang-en {
 
 @media (max-width: 720px) {
   :root {
-    --header-height: 70px;
+    --header-height: 120px;
   }
 
   .section {
@@ -2456,9 +2473,9 @@ html[data-lang="en"] .lang-en {
   }
 
   h1 {
-    font-size: clamp(1.68rem, 7vw, 2.1rem);
+    font-size: clamp(1.4rem, 6.5vw, 1.9rem);
     line-height: 1.05;
-    max-width: 15ch;
+    max-width: 16ch;
   }
 
   .services-grid {
@@ -2511,15 +2528,39 @@ html[data-lang="en"] .lang-en {
   }
 
   .header-actions {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: center;
     justify-content: space-between;
-    gap: 0.65rem;
+    gap: 0.5rem;
     width: 100%;
     justify-self: stretch;
+    overflow: hidden;
+  }
+
+  .site-nav {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .nav-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    padding-bottom: 2px;
+  }
+
+  .nav-list::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-link {
-    padding-inline: 0.75rem;
+    padding-inline: 0.65rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .footer-inner {
@@ -2546,6 +2587,82 @@ html[data-lang="en"] .lang-en {
 @media (prefers-reduced-motion: reduce) {
   .page-reveal {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .hero {
+    padding-top: 1.5rem;
+  }
+
+  .hero-timeline {
+    margin-top: 1rem;
+  }
+
+  .timeline {
+    row-gap: 0.5rem;
+  }
+
+  .timeline-task {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .dashboard-kpis {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-kpi:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard-panel {
+    padding: 1.1rem;
+    gap: 1.2rem;
+  }
+
+  .phase-panel {
+    padding: 1.1rem 1rem 1.3rem;
+  }
+
+  .phase-panel-list li {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .case-panel,
+  .contact-card {
+    padding: 1rem;
+  }
+
+  .metric {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .live-ticker {
+    font-size: 0.68rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .section-intro h2 {
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
+  }
+
+  .button {
+    padding: 0.65rem 1rem;
+    min-height: 2.6rem;
+  }
+
+  .page-reveal {
+    height: clamp(180px, 36vh, 280px);
   }
 }
 

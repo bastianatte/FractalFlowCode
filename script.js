@@ -797,13 +797,25 @@
 
   (function initHeroGlitch() {
     const h1 = document.querySelector(".hero-copy h1");
-    if (!h1) return;
-    function glitch() {
-      h1.classList.add("glitching");
-      setTimeout(() => h1.classList.remove("glitching"), 560);
-      setTimeout(glitch, 1500 + Math.random() * 2000);
+    const brandText = document.querySelector(".brand-text");
+
+    if (h1) {
+      function glitchH1() {
+        h1.classList.add("glitching");
+        setTimeout(() => h1.classList.remove("glitching"), 560);
+        setTimeout(glitchH1, 1500 + Math.random() * 2000);
+      }
+      setTimeout(glitchH1, 1000 + Math.random() * 1000);
     }
-    setTimeout(glitch, 1000 + Math.random() * 1000);
+
+    if (brandText) {
+      function glitchBrand() {
+        brandText.classList.add("glitching");
+        setTimeout(() => brandText.classList.remove("glitching"), 560);
+        setTimeout(glitchBrand, 2500 + Math.random() * 3500);
+      }
+      setTimeout(glitchBrand, 2800 + Math.random() * 2000);
+    }
   })();
 
   (function initDashboard() {
