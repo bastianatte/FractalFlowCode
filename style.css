@@ -100,128 +100,6 @@ body::after {
   radial-gradient(circle at center, transparent 0 24%, rgba(18, 12, 28, 0.05) 34%, rgba(18, 12, 28, 0.28) 56%, rgba(12, 15, 19, 0.86) 82%, rgba(12, 15, 19, 0.98) 100%),
   linear-gradient(180deg, rgba(12, 15, 19, 0.36), rgba(12, 15, 19, 0.74));
 } 
-.page-reveal {
-  position: relative;
-  width: 100%;
-  height: clamp(280px, 46vh, 520px);
-  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
-  z-index: 1;
-  pointer-events: none;
-  background: #040406;
-  opacity: 1;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
-  transition:
-    opacity 120ms linear,
-    height 0.72s ease,
-    margin 0.72s ease,
-    padding 0.72s ease,
-    border-width 0.72s ease,
-    box-shadow 0.72s ease;
-}
-
-.page-reveal.is-hidden {
-  opacity: 0;
-  height: 0;
-  margin: 0;
-  border-bottom-width: 0;
-  box-shadow: none;
-}
-
-.page-reveal::before,
-.page-reveal::after {
-  display: none;
-}
-
-.page-reveal-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.page-reveal-title {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  color: transparent;
-  background: linear-gradient(90deg, #84ecff 0%, #eef1f3 55%, #84ecff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  font-size: clamp(1.45rem, 3.3vw, 5.8rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  text-align: center;
-  line-height: 0.96;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(0.45rem) scale(0.98);
-  transition: opacity 240ms ease, filter 240ms ease;
-  filter: drop-shadow(0 0 18px rgba(132, 236, 255, 0.24));
-  mix-blend-mode: screen;
-  will-change: opacity, transform, filter;
-  pointer-events: none;
-}
-
-.page-reveal-title.is-visible {
-  opacity: 1;
-}
-
-.page-reveal-word {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  background: inherit;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  will-change: transform, opacity;
-}
-
-.page-reveal-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 0;
-  background: inherit;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.page-reveal-line-top {
-  font-size: 1.24em;
-  letter-spacing: 0.14em;
-}
-
-.page-reveal-line-bottom {
-  font-size: 0.92em;
-  letter-spacing: 0.11em;
-  margin-top: 0.14em;
-}
-
-.page-reveal-letter {
-  display: inline-block;
-  background: inherit;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  will-change: transform, opacity;
-}
-
-.page-reveal-space {
-  display: inline-block;
-  width: 0.32em;
-}
-
 img {
   max-width: 100%;
   display: block;
@@ -2688,16 +2566,9 @@ html[data-lang="en"] .lang-en {
     mask-image: radial-gradient(circle at 50% 94%, rgba(0, 0, 0, 1) 0 32%, rgba(0, 0, 0, 0.98) 48%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0) 84%);
   }
 
-  .page-reveal {
-    inset: 0 0 auto 0;
-    height: clamp(240px, 42vh, 420px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-reveal {
-    display: none;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2779,9 +2650,6 @@ html[data-lang="en"] .lang-en {
     min-height: 2.6rem;
   }
 
-  .page-reveal {
-    height: clamp(180px, 36vh, 280px);
-  }
 }
 
 /* ── Popovers ─────────────────────────────────────────────────────────────── */
