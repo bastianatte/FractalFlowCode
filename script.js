@@ -811,10 +811,16 @@
     if (brandText) {
       function glitchBrand() {
         brandText.classList.add("glitching");
-        setTimeout(() => brandText.classList.remove("glitching"), 560);
-        setTimeout(glitchBrand, 2500 + Math.random() * 3500);
+        setTimeout(() => brandText.classList.remove("glitching"), 650);
+        if (Math.random() > 0.55) {
+          setTimeout(() => {
+            brandText.classList.add("glitching");
+            setTimeout(() => brandText.classList.remove("glitching"), 650);
+          }, 750);
+        }
+        setTimeout(glitchBrand, 900 + Math.random() * 1400);
       }
-      setTimeout(glitchBrand, 2800 + Math.random() * 2000);
+      setTimeout(glitchBrand, 1000 + Math.random() * 600);
     }
   })();
 

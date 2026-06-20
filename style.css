@@ -32,7 +32,7 @@ body {
   position: relative;
   margin: 0;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 82% 8%, rgba(132, 236, 255, 0.10), transparent 26%),
     radial-gradient(circle at 18% 74%, rgba(132, 236, 255, 0.06), transparent 28%),
@@ -899,9 +899,30 @@ footer {
 
 /* ── Hero glitch ──────────────────────────────────────── */
 
-h1.glitching,
-.brand-text.glitching {
+h1.glitching {
   animation: heroGlitch 0.55s steps(1) forwards;
+}
+
+.brand-text.glitching {
+  animation: brandGlitch 0.65s steps(1) forwards;
+}
+
+@keyframes brandGlitch {
+  0%, 100% { transform: none; text-shadow: none; filter: none; opacity: 1; }
+  4%  { transform: translateX(-7px) skewX(-4deg); text-shadow: 8px 0 rgba(0,230,255,1), -8px 0 rgba(200,60,255,0.9); filter: brightness(1.7); }
+  7%  { transform: translateX(7px) skewX(4deg);  text-shadow: -8px 0 rgba(0,230,255,1), 8px 0 rgba(200,60,255,0.9); }
+  9%  { transform: none; text-shadow: none; filter: none; }
+  12% { opacity: 0.35; transform: translateX(-12px) skewX(-6deg); text-shadow: 12px 0 rgba(0,230,255,1), -12px 0 rgba(200,60,255,1); filter: brightness(2.0); }
+  15% { opacity: 1;    transform: translateX(12px) skewX(6deg);   text-shadow: -12px 0 rgba(0,230,255,1), 12px 0 rgba(200,60,255,1); filter: brightness(1.6); }
+  18% { transform: none; text-shadow: none; filter: none; }
+  22% { opacity: 0.8; transform: translateX(-4px); text-shadow: 5px 0 rgba(0,230,255,0.8); }
+  24% { transform: none; opacity: 1; text-shadow: none; }
+  34% { opacity: 0.2; transform: translateX(16px) skewX(7deg);  text-shadow: -16px 0 rgba(200,60,255,1), 16px 0 rgba(0,230,255,0.8); filter: brightness(2.2); }
+  37% { opacity: 1;   transform: translateX(-16px) skewX(-7deg); text-shadow: 16px 0 rgba(200,60,255,1); filter: brightness(1.7); }
+  40% { transform: translateX(5px); text-shadow: -6px 0 rgba(0,230,255,0.9); }
+  42% { transform: none; text-shadow: none; filter: none; }
+  55% { opacity: 0.5; transform: translateX(-6px); text-shadow: 9px 0 rgba(0,230,255,1), -5px 0 rgba(200,60,255,0.9); filter: brightness(1.6) saturate(1.8); }
+  57% { transform: none; text-shadow: none; filter: none; opacity: 1; }
 }
 
 @keyframes heroGlitch {
@@ -1205,15 +1226,16 @@ p {
 h1 {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 800;
-  font-size: clamp(2rem, 4vw, 5rem);
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
   line-height: 1.0;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  max-width: 20ch;
+  max-width: 100%;
 }
 
 h1 .title-line {
   display: block;
+  white-space: nowrap;
 }
 
 .lead {
@@ -2421,7 +2443,7 @@ html[data-lang="en"] .lang-en {
 
   h1 {
     font-size: clamp(1.6rem, 5vw, 2.1rem);
-    max-width: 18ch;
+    max-width: 100%;
   }
 
   .brand-logo {
@@ -2475,7 +2497,7 @@ html[data-lang="en"] .lang-en {
   h1 {
     font-size: clamp(1.4rem, 6.5vw, 1.9rem);
     line-height: 1.05;
-    max-width: 16ch;
+    max-width: 100%;
   }
 
   .services-grid {
@@ -2591,6 +2613,14 @@ html[data-lang="en"] .lang-en {
 }
 
 @media (max-width: 480px) {
+  h1 {
+    max-width: 15ch;
+  }
+
+  h1 .title-line {
+    white-space: normal;
+  }
+
   .section {
     padding: 3rem 0;
   }
