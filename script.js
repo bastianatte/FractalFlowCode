@@ -763,7 +763,7 @@
 
   (function initServiceGlyphs() {
     const cards = document.querySelectorAll(".service-card");
-    const chars = "アイウエカキクコサシスセタチツテナニハヒフヘモラリルレロΔΨΦΩΣ⌬⍟⊕◈✦";
+    const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモラリルレロワヲンΔΨΦΩΣΛΘΠ⌬⍟⊕⊗◈✦⟁∴∵⋮⋯╬╪╫░▒▓";
 
     cards.forEach((card) => {
       let container = null;
@@ -777,7 +777,7 @@
         container.className = "service-glyphs";
         card.appendChild(container);
 
-        const count = 18;
+        const count = 42;
         for (let i = 0; i < count; i++) {
           const span = document.createElement("span");
           span.className = "service-glyph";
