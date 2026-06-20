@@ -761,6 +761,55 @@
   initCounters();
   initStarStrip();
 
+  (function initServiceGlyphs() {
+    const cards = document.querySelectorAll(".service-card");
+    const chars = "アイウエカキクコサシスセタチツテナニハヒフヘモラリルレロΔΨΦΩΣ⌬⍟⊕◈✦";
+
+    cards.forEach((card) => {
+      let container = null;
+      let fadeTimer = null;
+
+      card.addEventListener("mouseenter", () => {
+        if (container) container.remove();
+        clearTimeout(fadeTimer);
+
+        container = document.createElement("div");
+        container.className = "service-glyphs";
+        card.appendChild(container);
+
+        const count = 18;
+        for (let i = 0; i < count; i++) {
+          const span = document.createElement("span");
+          span.className = "service-glyph";
+          span.textContent = chars[Math.floor(Math.random() * chars.length)];
+
+          const x = 3 + Math.random() * 88;
+          const y = Math.random() * 95;
+          const op = (0.45 + Math.random() * 0.4).toFixed(2);
+          const dur = (0.55 + Math.random() * 0.45).toFixed(2);
+          const size = (0.62 + Math.random() * 0.34).toFixed(2);
+
+          span.style.left = x + "%";
+          span.style.top = y + "%";
+          span.style.fontSize = size + "rem";
+          span.style.setProperty("--glyph-op", op);
+          span.style.setProperty("--glyph-dur", dur + "s");
+          span.style.animationDelay = ((y / 100) * 0.52 + Math.random() * 0.06).toFixed(3) + "s";
+
+          container.appendChild(span);
+        }
+      });
+
+      card.addEventListener("mouseleave", () => {
+        if (!container) return;
+        container.style.opacity = "0";
+        fadeTimer = setTimeout(() => {
+          if (container) { container.remove(); container = null; }
+        }, 280);
+      });
+    });
+  })();
+
   (function initStars() {
     const canvas = document.createElement("canvas");
     canvas.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1;";
